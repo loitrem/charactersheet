@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ICharactersRepo extends JpaRepository<Characters, Long> {
 
-    //Characters findById(Long id);
+    Characters findByeId(Long id);
 
 }

@@ -21,10 +21,13 @@ public class CharacterService {
     //find all characters
     public List<Characters> findAllCharacters() {return iCharactersRepo.findAll(); }
 
+    //find character by id
     public Characters findById(Long id) {
         if (id != 0 ) {
-            return iCharactersRepo.findById(id);
+            return iCharactersRepo.findByeId(id);
         }
-        return null;
+        else {
+            return null;
+        }
     }
 }
