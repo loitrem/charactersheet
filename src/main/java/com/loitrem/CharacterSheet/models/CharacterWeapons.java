@@ -6,6 +6,8 @@ import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.io.Serial;
+import java.io.Serializable;
 
 @Getter
 @Setter
@@ -16,7 +18,9 @@ import javax.validation.constraints.NotBlank;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity //database
 @Component //spring boot component
-public class CharacterWeapons {
+public class CharacterWeapons implements Serializable {
+
+    private static final long serialVersionUID = 1854615832432628775L;
 
     @Id //ID field
     @Column(name = "Weapons Id")
@@ -40,4 +44,14 @@ public class CharacterWeapons {
     String wDamage;
 
     int wRange;
+
+    public CharacterWeapons(Long wId, Characters wCharacters, @NonNull String wName, int wAttackBonus, @NonNull String wCrit, @NonNull String wDamage, int wRange) {
+        this.wId = wId;
+        this.wCharacters = wCharacters;
+        this.wName = wName;
+        this.wAttackBonus = wAttackBonus;
+        this.wCrit = wCrit;
+        this.wDamage = wDamage;
+        this.wRange = wRange;
+    }
 }

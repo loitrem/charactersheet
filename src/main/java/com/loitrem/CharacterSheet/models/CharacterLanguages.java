@@ -6,6 +6,8 @@ import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.io.Serial;
+import java.io.Serializable;
 
 @Getter
 @Setter
@@ -16,7 +18,9 @@ import javax.validation.constraints.NotBlank;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity //database
 @Component //spring boot component
-public class CharacterLanguages {
+public class CharacterLanguages implements Serializable {
+
+    private static final long serialVersionUID = -63216786411689107L;
 
     @Id //ID field
     @Column(name = "Languages Id")
@@ -29,4 +33,10 @@ public class CharacterLanguages {
 
     @NonNull @NotBlank
     String lName;
+
+    public CharacterLanguages(Long lId, Characters lCharacters, @NonNull String lName) {
+        this.lId = lId;
+        this.lCharacters = lCharacters;
+        this.lName = lName;
+    }
 }
