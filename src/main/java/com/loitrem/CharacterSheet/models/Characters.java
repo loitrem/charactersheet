@@ -7,7 +7,6 @@ import org.springframework.stereotype.Component;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.util.List;
-import java.util.Set;
 
 @Getter
 @Setter
@@ -159,6 +158,9 @@ public class Characters {
     int cBonusSpells8;
     int cBonusSpells9;
 
+    @OneToMany(mappedBy = "cspCharacters", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @NonNull @NotBlank
+    List<CharacterSpells> cSpells;
 
     @OneToMany(mappedBy = "lCharacters", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @NonNull @NotBlank

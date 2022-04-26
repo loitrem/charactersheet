@@ -4,9 +4,7 @@ import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Component;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
 @Getter
@@ -18,17 +16,22 @@ import javax.validation.constraints.NotBlank;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity //database
 @Component //spring boot component
-public class CharacterSpellsList {
+public class CharacterSpells {
 
     @Id //ID field
     @Column(name = "Character Spells Id")
     Long cspId;
 
+    @ToString.Exclude
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "Characters_Id")
+    Characters cspCharacters;
+
     @NonNull @NotBlank
     String cspName;
 
     @NotBlank
-    int csRank;
+    int cspRank;
 
 
 }
