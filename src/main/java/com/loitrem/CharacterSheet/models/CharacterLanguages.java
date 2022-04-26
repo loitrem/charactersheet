@@ -16,7 +16,7 @@ import javax.validation.constraints.NotBlank;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity //database
 @Component //spring boot component
-public class Languages {
+public class CharacterLanguages {
 
     @Id //ID field
     @Column(name = "Languages Id")

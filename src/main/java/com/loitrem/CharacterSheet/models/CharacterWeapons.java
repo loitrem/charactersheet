@@ -28,9 +28,6 @@ public class CharacterWeapons {
     Characters wCharacters;
 
     @NonNull @NotBlank
-    int wCharacterID;
-
-    @NonNull @NotBlank
     String wName;
 
     @NotBlank

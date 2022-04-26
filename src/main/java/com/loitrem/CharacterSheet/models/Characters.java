@@ -164,5 +164,5 @@ public class Characters {
 
     @OneToMany(mappedBy = "lCharacters", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @NonNull @NotBlank
-    List<Languages> cLanguages;
+    List<CharacterLanguages> cLanguages;
 }
