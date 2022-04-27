@@ -40,5 +40,10 @@ public class Games {
     @ManyToMany(mappedBy = "cGames", fetch = FetchType.LAZY)
     List<Characters> gCharacters;
 
+    @ToString.Exclude
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "pGamesCreated", nullable = false)
+    Players gGameCreator;
+
 
 }
