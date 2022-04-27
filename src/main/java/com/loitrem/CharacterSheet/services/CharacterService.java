@@ -31,9 +31,30 @@ public class CharacterService {
         }
     }
 
-    public List<Characters> findByName(String name) {
+    //find characters by character name
+    public List<Characters> findByCharacterName(String name) {
         if (name != null){
             return iCharactersRepo.findByCharacterName(name);
+        }
+        else {
+            return null;
+        }
+    }
+
+    //find characters by play name
+    public List<Characters> findByPlayerName(String name) {
+        if (name != null){
+            return iCharactersRepo.findByPlayerName(name);
+        }
+        else {
+            return null;
+        }
+    }
+
+    //find characters by level
+    public List<Characters> findByCharacterLevel(Long level) {
+        if (level != null){
+            return iCharactersRepo.findByCharacterLevel(level);
         }
         else {
             return null;
