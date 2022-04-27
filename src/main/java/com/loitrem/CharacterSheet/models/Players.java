@@ -5,6 +5,7 @@ import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 
 @Getter
 @Setter
@@ -16,4 +17,7 @@ import javax.persistence.Entity;
 @Entity //database
 @Component //spring boot component
 public class Players {
+
+    @Id
+    Long pId;
 }

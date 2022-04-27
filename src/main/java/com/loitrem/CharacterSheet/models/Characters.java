@@ -181,6 +181,13 @@ public class Characters implements Serializable {
     @NonNull @NotBlank
     List<CharacterLanguages> cLanguages;
 
+    @ToString.Exclude
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(name = "CharacterGames",
+        joinColumns = {@JoinColumn(name = "Character_Id", referencedColumnName = "cId", nullable = false, updatable = false)},
+            inverseJoinColumns = {@JoinColumn(name = "Games_Id", referencedColumnName = "gId", nullable = false, updatable = false)})
+    List<Games> cGames;
+
     public Characters(Long cId, @NonNull String cPlayerName, @NonNull String cCharacterName, @NonNull String cAlignment, int cLevel, String cDeity, @NonNull String cHomeland, @NonNull String cRace,
                       @NonNull String cSize, @NonNull String cGender, String cHeight, int cWeight, String cHairColor, String cEyeColor, int cStr, int cDex, int cCon, int cWis, int cCha, int cHp,
                       int cSpeed, int cInitMiscModifier, int cFort, int cReflex, int cWill, int cAttackBonus, @NonNull String cClass, int cAC, int cTouchAC, int cFlatFootedAC, int cSpellResist,
