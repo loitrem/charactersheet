@@ -30,4 +30,14 @@ public class CharacterService {
             return null;
         }
     }
+
+    public List<Characters> findByName(String name) {
+        if (name != null){
+            return iCharactersRepo.findByCharacterName(name);
+        }
+        else {
+            return null;
+        }
+    }
+
 }
