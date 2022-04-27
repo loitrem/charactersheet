@@ -2,17 +2,18 @@ package com.loitrem.CharacterSheet.models;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import org.hibernate.Hibernate;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import java.util.List;
+import java.util.Objects;
 
 @Getter
 @Setter
 @ToString
-@EqualsAndHashCode
 @NoArgsConstructor
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
@@ -40,6 +41,35 @@ public class Players {
     String pPassword;
 
     @OneToMany(mappedBy = "gGameCreator", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ToString.Exclude
     List<Games> pGamesCreated;
 
+    public void setpGamesCreated(List<Games> pGamesCreated) {
+        this.pGamesCreated = pGamesCreated;
+    }
+
+    public List<Games> getpGamesCreated() {
+        return pGamesCreated;
+    }
+
+    public Players(Long pId, @NonNull String pPlayerName, @NonNull String pUserName, @NonNull String pPassword, List<Games> pGamesCreated) {
+        this.pId = pId;
+        this.pPlayerName = pPlayerName;
+        this.pUserName = pUserName;
+        this.pPassword = pPassword;
+        this.pGamesCreated = pGamesCreated;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        Players players = (Players) o;
+        return pId != null && Objects.equals(pId, players.pId);
+    }
+
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
+    }
 }

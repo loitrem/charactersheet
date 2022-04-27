@@ -2,17 +2,17 @@ package com.loitrem.CharacterSheet.models;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import org.hibernate.Hibernate;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import java.io.Serial;
 import java.io.Serializable;
+import java.util.Objects;
 
 @Getter
 @Setter
 @ToString
-@EqualsAndHashCode
 @NoArgsConstructor
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
@@ -471,5 +471,18 @@ public class CharacterSkills implements Serializable {
         this.csUseMagicDeviceAbilityMod = csUseMagicDeviceAbilityMod;
         this.csUseMagicDeviceRanks = csUseMagicDeviceRanks;
         this.csUseMagicDeviceMiscMod = csUseMagicDeviceMiscMod;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        CharacterSkills that = (CharacterSkills) o;
+        return csId != null && Objects.equals(csId, that.csId);
+    }
+
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
     }
 }
