@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -23,18 +24,17 @@ public class CharacterWeapons implements Serializable {
     private static final long serialVersionUID = 1854615832432628775L;
 
     @Id //ID field
-    @Column(name = "Weapons Id")
     Long wId;
 
     @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "Characters_Id")
+    @JoinColumn(name = "cId")
     Characters wCharacters;
 
     @NonNull @NotBlank
     String wName;
 
-    @NotBlank
+    @NotNull
     int wAttackBonus;
 
     @NonNull @NotBlank
@@ -44,16 +44,6 @@ public class CharacterWeapons implements Serializable {
     String wDamage;
 
     int wRange;
-
-    public CharacterWeapons(Long wId, Characters wCharacters, @NonNull String wName, int wAttackBonus, @NonNull String wCrit, @NonNull String wDamage, int wRange) {
-        this.wId = wId;
-        this.wCharacters = wCharacters;
-        this.wName = wName;
-        this.wAttackBonus = wAttackBonus;
-        this.wCrit = wCrit;
-        this.wDamage = wDamage;
-        this.wRange = wRange;
-    }
 
     @Override
     public boolean equals(Object o) {

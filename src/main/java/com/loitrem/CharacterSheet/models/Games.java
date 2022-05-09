@@ -17,14 +17,12 @@ import java.util.Objects;
 @Setter
 @ToString
 @NoArgsConstructor
-@RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity //database
 @Component //spring boot component
 public class Games {
 
     @Id
-    @Column(name = "Game_Id")
     Long gId;
 
     @NotBlank @NonNull
@@ -38,7 +36,7 @@ public class Games {
     Date gStartDate;
 
     @ToString.Exclude
-    @ManyToMany(mappedBy = "cGames", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "cGames", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     List<Characters> gCharacters;
 
     @ToString.Exclude

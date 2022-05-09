@@ -23,7 +23,6 @@ public class CharacterLanguages implements Serializable {
     private static final long serialVersionUID = -63216786411689107L;
 
     @Id //ID field
-    @Column(name = "Languages Id")
     Long lId;
 
     @ToString.Exclude
@@ -34,11 +33,6 @@ public class CharacterLanguages implements Serializable {
     @NonNull @NotBlank
     String lName;
 
-    public CharacterLanguages(Long lId, Characters lCharacters, @NonNull String lName) {
-        this.lId = lId;
-        this.lCharacters = lCharacters;
-        this.lName = lName;
-    }
 
     @Override
     public boolean equals(Object o) {
