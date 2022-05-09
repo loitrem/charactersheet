@@ -4,6 +4,11 @@ import com.loitrem.CharacterSheet.models.CharacterLanguages;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
-public interface ICharacterLanguages extends JpaRepository<CharacterLanguages, Long> {
+public interface ICharacterLanguagesRepo extends JpaRepository<CharacterLanguages, Long> {
+
+    List<CharacterLanguages> findByclId(long id);
+
 }
