@@ -6,11 +6,13 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface IPlayersRepo extends JpaRepository<Players, Long> {
 
     Players findBypId(Long id);
 
     @Query("SELECT e FROM Players e WHERE e.pPlayerName LIKE %:name%")
-    Players findByPlayerName(@Param("name") String name);
+    List<Players> findByPlayerName(@Param("name") String name);
 }

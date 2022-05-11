@@ -22,4 +22,13 @@ public class PlayersService {
         }
         return null;
     }
+
+    //Find players by name
+    public List<Players> findPlayerByName(String name) {
+        if (name != null) {
+            return iPlayersRepo.findByPlayerName(name);
+        }
+        return null;
+    }
+
 }
