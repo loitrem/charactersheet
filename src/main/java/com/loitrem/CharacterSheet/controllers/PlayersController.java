@@ -48,10 +48,19 @@ public class PlayersController {
         return "showplayers";
     }
 
-    //Search players by name
+    //Search players by name - returns list like search
     @PostMapping("playerbyname")
     public String findPlayerByName(Model mPlayers, @RequestParam("name") String name){
         List<Players> p = playersService.findPlayerByName(name);
+        mPlayers.addAttribute("players", p);
+
+        return "playersbyname";
+    }
+
+    //Search players by name - returns exact match
+    @PostMapping("playerbypusername")
+    public String findByPUsername(Model mPlayers, @RequestParam("name") String name){
+        Players p = playersService.f;
         mPlayers.addAttribute("players", p);
 
         return "playersbyname";

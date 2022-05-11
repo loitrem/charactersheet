@@ -23,10 +23,26 @@ public class PlayersService {
         return null;
     }
 
+    //find player by id
+    public Players findByeId(Long id){
+        if (id!=0){
+            return iPlayersRepo.findBypId(id);
+        }
+        return null;
+    }
+
     //Find players by name
     public List<Players> findPlayerByName(String name) {
         if (name != null) {
             return iPlayersRepo.findByPlayerName(name);
+        }
+        return null;
+    }
+
+    //Find players by name
+    public Players findByPUsername(String name) {
+        if (name != null) {
+            return iPlayersRepo.findPlayerByPUsername(name);
         }
         return null;
     }

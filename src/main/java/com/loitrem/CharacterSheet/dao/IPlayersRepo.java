@@ -15,4 +15,6 @@ public interface IPlayersRepo extends JpaRepository<Players, Long> {
 
     @Query("SELECT e FROM Players e WHERE e.pPlayerName LIKE %:name%")
     List<Players> findByPlayerName(@Param("name") String name);
+
+    Players findPlayerByPUsername(String name);
 }
