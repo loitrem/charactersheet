@@ -6,10 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -53,8 +50,8 @@ public class CharactersController {
     }
 
     //Show character by id
-    @GetMapping("/showallcharacters/{cId}")
-    public String characterSearch(Model mCharacter, Model mCharacterSkills, Model mCharacterSpells, Model mCharacterLanguages , Model mPlayer, Model mGames, @PathVariable("cId") Long id){
+    @GetMapping("/characters/{cId}")
+    public String characterById(Model mCharacter, Model mCharacterSkills, Model mCharacterSpells, Model mCharacterLanguages , Model mPlayer, Model mGames, @PathVariable("cId") Long id){
         Characters c = characterService.findById(id);
         List<CharacterLanguages> cl = c.getCLanguages();
         List<CharacterSpells> csp = c.getCSpells();
@@ -72,6 +69,54 @@ public class CharactersController {
         return "characters";
     }
 
+    //Show all games for a character
+    @GetMapping("/characters/{gId}")
+    public String charactergames(Model mCharacter, Model mCharacterSkills, Model mCharacterSpells, Model mCharacterLanguages , Model mPlayer, Model mGames, @PathVariable("gId") Long id){
+        Characters c = characterService.findById(id);
+        List<CharacterLanguages> cl = c.getCLanguages();
+        List<CharacterSpells> csp = c.getCSpells();
+        List<CharacterSkills> csk = c.getCSkills();
+        Players p = c.getCPlayer();
+        Games g = c.getCGames();
 
+        mCharacter.addAttribute("characters", c);
+        mCharacterLanguages.addAttribute("characterLanguages", cl);
+        mCharacterSkills.addAttribute("characterSkills", csk);
+        mCharacterSpells.addAttribute("characterSpells", csp);
+        mGames.addAttribute("games", g);
+        mPlayer.addAttribute("player", p);
+
+        return "charactersgames";
+    }
+
+    //Search characters by name
+    @PostMapping("/characternamesearch")
+    public String characterNameSearch(Model mCharacter, @RequestParam("name") String name){
+        List<Characters> c = characterService.findByCharacterName(name);
+
+        mCharacter.addAttribute("characters", c);
+
+        return "characterbyname";
+    }
+
+    //Search characters by level
+    @PostMapping("/characterlevelsearch")
+    public String characterLevelSearch(Model mCharacter, @RequestParam("name") String name){
+        List<Characters> c = characterService.findByCharacterName(name);
+
+        mCharacter.addAttribute("characters", c);
+
+        return "characterbylevel";
+    }
+
+    //Search characters by game
+    @PostMapping("/charactergamesearch")
+    public String characterSearch(Model mCharacter, @RequestParam("name") String name){
+        List<Characters> c = characterService.findByCharacterName(name);
+
+        mCharacter.addAttribute("characters", c);
+
+        return "characterbygame";
+    }
 
 }
