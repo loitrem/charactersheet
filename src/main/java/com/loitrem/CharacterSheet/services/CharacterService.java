@@ -14,7 +14,7 @@ public class CharacterService {
     ICharactersRepo iCharactersRepo;
 
     @Autowired
-    public CharacterService (ICharactersRepo iCharactersRepo){
+    public CharacterService(ICharactersRepo iCharactersRepo){
         this.iCharactersRepo = iCharactersRepo;
     }
 

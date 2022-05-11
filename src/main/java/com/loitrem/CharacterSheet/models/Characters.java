@@ -28,7 +28,9 @@ public class Characters implements Serializable {
     Long cId;
 
     @NonNull @NotBlank
-    String cPlayerName;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "pId", nullable = false)
+    Players cPlayer;
 
     @NonNull @NotBlank
     String cCharacterName;

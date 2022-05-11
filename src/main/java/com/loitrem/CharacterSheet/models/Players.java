@@ -26,6 +26,9 @@ public class Players {
     @NotBlank @NonNull
     String pPlayerName;
 
+    @OneToMany(mappedBy = "cPlayer", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    List<Characters> pCharacters;
+
     @NonNull @NotBlank @Column(unique = true) //cannot be null/blank and must be unique
     @Pattern(regexp = "^[A-Za-z0-9]\\w{5,}$", message = "Must contain at least 6 characters\n" +
             "Must only contain letters or numbers")
