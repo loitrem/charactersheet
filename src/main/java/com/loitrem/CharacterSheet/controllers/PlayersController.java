@@ -60,7 +60,7 @@ public class PlayersController {
     //Search players by name - returns exact match
     @PostMapping("playerbypusername")
     public String findByPUsername(Model mPlayers, @RequestParam("name") String name){
-        Players p = playersService.f;
+        Players p = playersService.findByPUsername(name);
         mPlayers.addAttribute("players", p);
 
         return "playersbyname";

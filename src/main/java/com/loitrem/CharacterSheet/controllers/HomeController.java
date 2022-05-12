@@ -80,8 +80,8 @@ public class HomeController {
         }
 
         //checks if username is already taken
-        if (playersService.findByPUsername(player.getPUserName())!=null){
-            log.warn(player.getPUserName());
+        if (playersService.findByPUsername(player.getPUsername())!=null){
+            log.warn(player.getPUsername());
             mError.addAttribute("error", "Username is already taken");
             List<Players> p = playersService.findAllPlayers();
             mPlayer.addAttribute("players", p);
@@ -92,7 +92,7 @@ public class HomeController {
         // sets user object into employee object, sets usertype object of user into user object, and sends user obj and employee obj to user service to save
         Players p = new Players();
         p.setPUserType("ROLE_USER");
-        p.setPUserName(username);
+        p.setPUsername(username);
         p.setPPlayerName(playerName);
 
         //Encode password for security

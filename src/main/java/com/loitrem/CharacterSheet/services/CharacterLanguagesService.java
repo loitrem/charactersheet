@@ -19,7 +19,7 @@ public class CharacterLanguagesService {
     public List<CharacterLanguages> findById(Long id) {
         if (id != 0)
         {
-            return iCharacterLanguagesRepo.findByclId(id);
+            return iCharacterLanguagesRepo.findBylId(id);
         }
         return null;
     }

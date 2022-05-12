@@ -24,7 +24,7 @@ public class CharacterService {
     //find character by id
     public Characters findById(Long id) {
         if (id != 0 ) {
-            return iCharactersRepo.findByeId(id);
+            return iCharactersRepo.findBycId(id);
         }
         else {
             return null;

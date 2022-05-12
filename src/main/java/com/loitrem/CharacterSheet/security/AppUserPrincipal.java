@@ -30,7 +30,7 @@ public class AppUserPrincipal implements UserDetails {
         //establish new set of simple granted authorities
         Set<SimpleGrantedAuthority> grantedAuthorities = new HashSet<>();
         //add each auth group for the user
-        grantedAuthorities.add(new SimpleGrantedAuthority(players.getPUserName()));
+        grantedAuthorities.add(new SimpleGrantedAuthority(players.getPUsername()));
 
         return grantedAuthorities;
 
@@ -43,7 +43,7 @@ public class AppUserPrincipal implements UserDetails {
 
     @Override
     public String getUsername() {
-        return this.players.getPUserName();
+        return this.players.getPUsername();
     }
 
     @Override

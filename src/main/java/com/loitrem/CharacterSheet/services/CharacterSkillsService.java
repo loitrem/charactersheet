@@ -18,7 +18,7 @@ public class CharacterSkillsService {
     public List<CharacterSkills> findById(Long id) {
         if (id != 0)
         {
-            return iCharacterSkillsRepo.findBycskId(id);
+            return iCharacterSkillsRepo.findBycsId(id);
         }
         return null;
     }

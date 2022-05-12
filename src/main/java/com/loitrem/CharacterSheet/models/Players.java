@@ -32,7 +32,7 @@ public class Players {
     @NonNull @NotBlank @Column(unique = true) //cannot be null/blank and must be unique
     @Pattern(regexp = "^[A-Za-z0-9]\\w{5,}$", message = "Must contain at least 6 characters\n" +
             "Must only contain letters or numbers")
-    String pUserName;
+    String pUsername;
 
     @NonNull @NotBlank//cannot be null/blank
     @Pattern(regexp = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$", message = "Must contain at least 8 characters\n" +
@@ -57,10 +57,10 @@ public class Players {
         return pGamesCreated;
     }
 
-    public Players(Long pId, @NonNull String pPlayerName, @NonNull String pUserName, @NonNull String pPassword, List<Games> pGamesCreated) {
+    public Players(Long pId, @NonNull String pPlayerName, @NonNull String pUsername, @NonNull String pPassword, List<Games> pGamesCreated) {
         this.pId = pId;
         this.pPlayerName = pPlayerName;
-        this.pUserName = pUserName;
+        this.pUsername = pUsername;
         this.pPassword = pPassword;
         this.pGamesCreated = pGamesCreated;
     }
