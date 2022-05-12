@@ -41,7 +41,7 @@ public class AppSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .usernameParameter("username")
                 .passwordParameter("password")
                 .loginProcessingUrl("/login/authenticate")
-                .defaultSuccessUrl("/players/home")
+                .defaultSuccessUrl("/users/home")
                 .failureUrl("/login?error=true")
                 .permitAll()
                 .and()

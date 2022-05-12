@@ -14,7 +14,7 @@ import java.util.List;
 
 @Slf4j
 @Controller
-@RequestMapping("players")
+@RequestMapping("users")
 public class PlayersController {
 
     CharacterService characterService;
@@ -28,7 +28,7 @@ public class PlayersController {
         this.gamesService = gamesService;
         this.playersService = playersService;
     }
-    
+
     //Model attribute for players
     @ModelAttribute("players")
     public Players initPlayers(){ return new Players(); }
