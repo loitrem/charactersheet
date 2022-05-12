@@ -9,5 +9,5 @@ import java.util.List;
 @Repository
 public interface ICharacterSkillsRepo extends JpaRepository<CharacterSkills, Long> {
 
-    List<CharacterSkills> findBycskId(long id);
+    List<CharacterSkills> findBycsId(long id);
 }

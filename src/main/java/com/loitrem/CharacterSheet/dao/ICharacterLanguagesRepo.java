@@ -9,6 +9,6 @@ import java.util.List;
 @Repository
 public interface ICharacterLanguagesRepo extends JpaRepository<CharacterLanguages, Long> {
 
-    List<CharacterLanguages> findByclId(long id);
+    List<CharacterLanguages> findBylId(long id);
 
 }

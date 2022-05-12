@@ -17,8 +17,9 @@ public interface IGamesRepo extends JpaRepository<Games, Long> {
     @Query("SELECT g FROM Games g WHERE g.gGameCreator LIKE %:player%")
     List<Games> findByDM(@Param("player") Long pId);
 
-    List<Characters> findCharactersByGame(Games game);
+    @Query("SELECT g FROM Games g WHERE g.gName LIKE %:game%")
+    List<Characters> findCharactersByGame(@Param("game")String game);
 
-    List<Games> findGamesbyPlayer(Long id);
+//    List<Games> findGamesByPlayer(@Param("id") Long id);
 
 }

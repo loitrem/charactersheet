@@ -11,7 +11,7 @@ import java.util.List;
 @Repository
 public interface ICharactersRepo extends JpaRepository<Characters, Long> {
 
-    Characters findByeId(Long id);
+    Characters findBycId(Long id);
 
     @Query("SELECT e FROM Characters e WHERE e.cCharacterName LIKE %:name%")
     List<Characters> findByCharacterName(@Param("name") String name);
