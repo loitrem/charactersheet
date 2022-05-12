@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.thymeleaf.org http://www.thymeleaf.org
+  http://www.ultraq.net.nz/thymeleaf/layout http://www.ultraq.net.nz/thymeleaf/layout
+  http://www.thymeleaf.org/thymeleaf-extras-springsecurity4 http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Bare - Start Bootstrap Template</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="../assets/favicon.ico" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <div th:replace="fragments/css"></div>
+</head>
+<body>
+<div th:replace="fragments/navbar"></div>
+<!-- Page content-->
+<div class="container">
+    <div class="raw">
+        <div class="col">
+            <!-- Login Form -->
+            <form th:action="@{login/authenticate}" method="post">
+                <table class="shadow form-width bg-white mx-auto mt-5 fs-4">
+                    <tr>
+                        <td class="bg-dark center h5 text-white pb-2 fs-4">Login</td>
+                    </tr>
+                    <tr>
+                        <td><label for="username" class="form-label fs-4">Username</label></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" name="username" class="form-control fs-4" id="username"
+                                   aria-describedby="usernamehelp"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="password" class="form-label fs-4">Password</label></td>
+                    </tr>
+                    <tr>
+                        <td><input type="password" name="password" class="form-control fs-4" id="password"></td>
+                    </tr>
+                    <tr>
+                        <td><button type="submit" class="btn btn-primary fs-4">Submit</button></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                    </tr>
+
+                </table>
+            </form>
+            <div class="text-center mt-5 fs-4 fw-bold text-danger error"  th:if="${param.error}">
+                Invalid username or password.
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Bootstrap core JS-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Core theme JS-->
+<script src="../js/scripts.js"></script>
+</body>
+</html>
+
