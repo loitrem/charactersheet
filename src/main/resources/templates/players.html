@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.thymeleaf.org http://www.thymeleaf.org
+  http://www.ultraq.net.nz/thymeleaf/layout http://www.ultraq.net.nz/thymeleaf/layout
+  http://www.thymeleaf.org/thymeleaf-extras-springsecurity4 http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Loitrem's Character Sheet Thingy</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="../assets/favicon.ico" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <div th:replace="fragments/css"></div>
+</head>
+<body class="mx-auto">
+<div th:replace="fragments/navbaruser"></div>
+<!-- Page content-->
+<div class="container">
+    <h3 class="mt-5"> Employees </h3>
+    <div><a th:href="@{/employees/show}"><button type="save" class="btn btn-primary">Back to Show All</button></a></div>
+
+    <table class="table table-primary table-striped table-hover fs-4 shadow mt-3">
+        <tr>
+            <td class="fw-bold fs-4">First Name:</td>
+            <td class="fs-4" th:text="${e.eFirstName}"></td>
+        </tr>
+        <tr>
+            <td class="fw-bold fs-4">Last Name:</td>
+            <td class="fs-4" th:text="${e.eLastName}"></td>
+        </tr>
+        <tr>
+            <td class="fw-bold fs-4">Date of Birth:</td>
+            <td class="fs-4" th:text="${e.eDob}"></td>
+        </tr>
+        <tr>
+            <td class="fw-bold fs-4">Phone:</td>
+            <td class="fs-4" th:text="${e.ePhoneNumber}"></td>
+        </tr>
+        <tr>
+            <td class="fw-bold fs-4">Email:</td>
+            <td class="fs-4" th:text="${e.eEmail}"></td>
+        </tr>
+        <tr>
+            <td class="fw-bold fs-4">Hire Date:</td>
+            <td class="fs-4" th:text="${e.eHireDate}"></td>
+        </tr>
+        <tr>
+            <td class="fw-bold fs-4">Job Title:</td>
+            <td class="fs-4" th:text="${e.eJobTitle}"></td>
+        </tr>
+        <tr>
+            <td class="fw-bold fs-4">Department:</td>
+            <td class="fs-4" th:text="${e.eDepartment.dName}"></td>
+        </tr>
+    </table>
+</div>
+<!-- Bootstrap core JS-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+<!-- Core theme JS-->
+<script src="../js/scripts.js"></script>
+</body>
+</html>
