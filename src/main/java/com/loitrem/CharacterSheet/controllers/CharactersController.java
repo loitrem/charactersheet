@@ -12,7 +12,7 @@ import java.util.List;
 
 @Controller
 @Slf4j
-@RequestMapping("Characters")
+@RequestMapping("characters")
 public class CharactersController {
 
     PlayersService playersService;

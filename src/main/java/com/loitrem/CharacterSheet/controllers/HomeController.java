@@ -81,6 +81,14 @@ public class HomeController {
         Matcher uMatch = pPassword.matcher(username);
         Matcher pMatch = pUsername.matcher(pass);
 
+        //checks if player name is not null
+        if (playerName==null){
+
+            mError.addAttribute("error", "Player Name is a required field");
+
+            return "register";
+        }
+
         //checks if password and re-entered password match
         if (!pass.equals(pass2)){
             log.warn(player.getPPassword());

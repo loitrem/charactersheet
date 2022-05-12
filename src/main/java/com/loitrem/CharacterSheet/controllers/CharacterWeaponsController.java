@@ -6,6 +6,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @Slf4j
-@RequestMapping("CharacterWeapons")
+@RequestMapping("characterweapons")
 public class CharacterWeaponsController {
 }

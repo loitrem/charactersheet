@@ -6,6 +6,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @Slf4j
-@RequestMapping("CharacterSkills")
+@RequestMapping("characterskills")
 public class CharacterSKillsController {
 }

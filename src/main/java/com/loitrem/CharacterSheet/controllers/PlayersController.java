@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
 @Slf4j
-@RequestMapping("Players")
+@Controller
+@RequestMapping("players")
 public class PlayersController {
 
     CharacterService characterService;
@@ -22,15 +22,13 @@ public class PlayersController {
     PlayersService playersService;
 
     //constructor
+    @Autowired
     public PlayersController(CharacterService characterService, GamesService gamesService, PlayersService playersService) {
         this.characterService = characterService;
         this.gamesService = gamesService;
         this.playersService = playersService;
     }
-
-    @Autowired
-
-
+    
     //Model attribute for players
     @ModelAttribute("players")
     public Players initPlayers(){ return new Players(); }
@@ -40,7 +38,7 @@ public class PlayersController {
     public String home(){ return "home"; }
 
     //Shows list of all players
-    @GetMapping("showplayers")
+    @GetMapping("/showplayers")
     public String showPlayers(Model mPlayers){
         List<Players> p = playersService.findAllPlayers();
         mPlayers.addAttribute("players", p);
@@ -49,7 +47,7 @@ public class PlayersController {
     }
 
     //Search players by name - returns list like search
-    @PostMapping("playerbyname")
+    @PostMapping("/playerbyname")
     public String findPlayerByName(Model mPlayers, @RequestParam("name") String name){
         List<Players> p = playersService.findPlayerByName(name);
         mPlayers.addAttribute("players", p);
@@ -58,7 +56,7 @@ public class PlayersController {
     }
 
     //Search players by name - returns exact match
-    @PostMapping("playerbypusername")
+    @PostMapping("/playerbypusername")
     public String findByPUsername(Model mPlayers, @RequestParam("name") String name){
         Players p = playersService.findByPUsername(name);
         mPlayers.addAttribute("players", p);
