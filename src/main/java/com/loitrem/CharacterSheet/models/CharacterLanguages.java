@@ -23,6 +23,15 @@ public class CharacterLanguages implements Serializable {
     private static final long serialVersionUID = -63216786411689107L;
 
     @Id //ID field
+    @SequenceGenerator( //creates a sequence
+            name = "CharacterLanguages_sequence", //names the table in the database
+            sequenceName = "CharacterLanguages_sequence", // sequence name
+            allocationSize = 1 // incriment by 1
+    )
+    @GeneratedValue(//tells what value to input
+            strategy = GenerationType.SEQUENCE, // says to use a sequence instead of auto increment aka GenerationType.IDENTITY
+            generator = "CharacterLanguages_sequence" // use sequence name
+    )
     Long lId;
 
     @ToString.Exclude

@@ -23,6 +23,7 @@ public class CharacterSpells implements Serializable {
     private static final long serialVersionUID = -484664250685965320L;
 
     @Id //ID field
+
     Long cspId;
 
     @ToString.Exclude

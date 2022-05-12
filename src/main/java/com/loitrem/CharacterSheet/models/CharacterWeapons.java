@@ -24,6 +24,15 @@ public class CharacterWeapons implements Serializable {
     private static final long serialVersionUID = 1854615832432628775L;
 
     @Id //ID field
+    @SequenceGenerator( //creates a sequence
+            name = "CharacterWeapons_sequence", //names the table in the database
+            sequenceName = "CharacterWeapons_sequence", // sequence name
+            allocationSize = 1 // incriment by 1
+    )
+    @GeneratedValue(//tells what value to input
+            strategy = GenerationType.SEQUENCE, // says to use a sequence instead of auto increment aka GenerationType.IDENTITY
+            generator = "CharacterWeapons_sequence" // use sequence name
+    )
     Long wId;
 
     @ToString.Exclude

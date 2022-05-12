@@ -25,6 +25,15 @@ public class Characters implements Serializable {
     private static final long serialVersionUID = -3829796007095099036L;
 
     @Id //ID field
+    @SequenceGenerator( //creates a sequence
+            name = "Characters_sequence", //names the table in the database
+            sequenceName = "Characters_sequence", // sequence name
+            allocationSize = 1 // incriment by 1
+    )
+    @GeneratedValue(//tells what value to input
+            strategy = GenerationType.SEQUENCE, // says to use a sequence instead of auto increment aka GenerationType.IDENTITY
+            generator = "Characters_sequence" // use sequence name
+    )
     Long cId;
 
     @NonNull @NotBlank

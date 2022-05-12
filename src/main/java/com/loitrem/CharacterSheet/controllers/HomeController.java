@@ -60,15 +60,18 @@ public class HomeController {
 
     //displays register player page
     @GetMapping("/register")
-    public String register(){ return "register"; }
+    public String register(Model mPlayers){
+        Players p = new Players();
+        mPlayers.addAttribute("players", p);
+        return "register"; }
 
     // register employee as a user
     @PostMapping("/register")
     public String authenticate(@ModelAttribute("players") @Valid Players player, BindingResult result, Model mError, Model mPlayer,
-                               @RequestParam("id") Long pId, @RequestParam("password") String pass, @RequestParam("password2") String pass2,@RequestParam("username") String username,
+                               @RequestParam("password") String pass, @RequestParam("password2") String pass2,@RequestParam("username") String username,
                                @RequestParam("playername") String playerName){
 
-        //cehcks if password and re-entered password match
+        //checks if password and re-entered password match
         if (!pass.equals(pass2)){
             log.warn(player.getPPassword());
             log.warn(pass2);
@@ -97,6 +100,8 @@ public class HomeController {
 
         //Encode password for security
         p.setPPassword(AppSecurityConfiguration.getPasswordEncoder().encode(pass));
+
+        iPlayersRepo.save(p);
 
         return "login";
     }

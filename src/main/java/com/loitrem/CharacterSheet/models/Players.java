@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
+import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 
@@ -18,9 +19,19 @@ import java.util.Objects;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity //database
 @Component //spring boot component
-public class Players {
+public class Players implements Serializable {
 
+    private static final long serialVersionUID = 3262270526504307566L;
     @Id
+    @SequenceGenerator( //creates a sequence
+            name = "Players_sequence", //names the table in the database
+            sequenceName = "Players_sequence", // sequence name
+            allocationSize = 1 // incriment by 1
+    )
+    @GeneratedValue(//tells what value to input
+            strategy = GenerationType.SEQUENCE, // says to use a sequence instead of auto increment aka GenerationType.IDENTITY
+            generator = "Players_sequence" // use sequence name
+    )
     Long pId;
 
     @NotBlank @NonNull
