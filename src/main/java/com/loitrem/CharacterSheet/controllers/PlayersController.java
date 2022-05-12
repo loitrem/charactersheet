@@ -32,7 +32,7 @@ public class PlayersController {
 
 
     //Model attribute for players
-    @ModelAttribute("player")
+    @ModelAttribute("players")
     public Players initPlayers(){ return new Players(); }
 
     //Displays home page for players (logged in)
