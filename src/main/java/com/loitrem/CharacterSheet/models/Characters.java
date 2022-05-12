@@ -39,7 +39,7 @@ public class Characters implements Serializable {
     String cAlignment;
 
     @NotNull
-    int cLevel;
+    Long cLevel;
 
     String cDeity;
 

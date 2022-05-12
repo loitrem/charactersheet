@@ -16,10 +16,8 @@ public interface ICharactersRepo extends JpaRepository<Characters, Long> {
     @Query("SELECT e FROM Characters e WHERE e.cCharacterName LIKE %:name%")
     List<Characters> findByCharacterName(@Param("name") String name);
 
-    @Query("SELECT e FROM Characters e WHERE e.cPlayerName LIKE %:name%")
-    List<Characters> findByPlayerName(@Param("name") String name);
 
-    @Query("SELECT e FROM Characters e WHERE e.cLevel = %:level%")
+    @Query("SELECT e FROM Characters e WHERE e.cLevel LIKE %:level%")
     List<Characters> findByCharacterLevel(@Param("level") Long level);
 
 }
