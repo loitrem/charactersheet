@@ -1,0 +1,76 @@
+<div><!-- Responsive navbar-->
+    <nav class="navbar navbar-expand-lg navbar-light fs-4" style="background-color: #d2dee7;">
+        <div class="container">
+            <!--            <img th:src="@{/assets/InOut.png}" style="width: 200px;"/>-->
+            <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
+                    class="navbar-toggler" data-bs-target="#navbarSupportedContent"
+                    data-bs-toggle="collapse" type="button"><span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent" sec:authorize="isAuthenticated()">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a aria-current="page" class="nav-link active" th:href="@{/players/home}">Home</a></li>
+                        <div sec:authorize="isAuthenticated()">
+                            <li class="nav-item dropdown">
+                                <a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"
+                                id="navbarDropdownInventoryAdmin" role="button">Profile</a>
+                                <ul aria-labelledby="navbarDropdownInventoryAdmin" class="dropdown-menu dropdown-menu-end">
+                                    <li><a class="dropdown-item" th:href="@{/characters/show}">Your Characters</a></li>
+                                    <li><a class="dropdown-item" th:href="@{/games/show}">Your Games</a></li>
+                                    <li><a class="dropdown-item" th:href="@{/games/join}">Join Games</a></li>
+                                    <li><a class="dropdown-item" th:href="@{/player/dm}">Be A DM</a></li>
+                                    <div sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_AUTH_USER')">
+                                        <li><a class="dropdown-item" th:href="@{/games/dm}">Your DM Games</a></li>
+                                        <li><a class="dropdown-item" th:href="@{/games/start}">Start A Games</a></li>
+                                    </div>
+                                </ul>
+                         </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent" sec:authorize="isAuthenticated()">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item dropdown">
+                        <a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"
+                       id="navbarDropdownInventoryGroups" role="button">Players </a>
+                        <ul aria-labelledby="navbarDropdownInventoryGroups" class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" th:href="@{/player/show}">Show Players</a></li>
+                            <li><a class="dropdown-item" th:href="@{/player/search}">Search Players</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent" sec:authorize="isAuthenticated()">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item dropdown">
+                        <a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"
+                       id="navbarDropdownEmployees" role="button">Characters</a>
+                        <ul aria-labelledby="navbarDropdownEmployees" class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" th:href="@{/characters/show}">Show Characters</a></li>
+                            <li><a class="dropdown-item" th:href="@{/characters/search}">Search Characters</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent" sec:authorize="isAuthenticated()">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item dropdown">
+                        <a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"
+                       id="navbarDropdownUsers" role="button">Games</a>
+                        <ul aria-labelledby="navbarDropdownUsers" class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" th:href="@{/games/show}">Show Games</a></li>
+                            <li><a class="dropdown-item" th:href="@{/games/search}">Search Games</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            </ul>
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <div sec:authorize="isAuthenticated()">
+                        <a class="nav-link" th:href="@{/logout}">Logout</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>

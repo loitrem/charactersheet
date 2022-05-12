@@ -14,7 +14,7 @@ import java.util.List;
 
 @Slf4j
 @Controller
-@RequestMapping("users")
+@RequestMapping("player")
 public class PlayersController {
 
     CharacterService characterService;
