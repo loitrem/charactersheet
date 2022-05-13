@@ -8,12 +8,13 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent" sec:authorize="isAuthenticated()">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item"><a aria-current="page" class="nav-link active" th:href="@{/players/home}">Home</a></li>
+                    <li class="nav-item"><a aria-current="page" class="nav-link active" th:href="@{/player/home}">Home</a></li>
                         <div sec:authorize="isAuthenticated()">
                             <li class="nav-item dropdown">
                                 <a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"
                                 id="navbarDropdownInventoryAdmin" role="button">Profile</a>
                                 <ul aria-labelledby="navbarDropdownInventoryAdmin" class="dropdown-menu dropdown-menu-end">
+                                    <li><a class="dropdown-item" th:href="@{/characters/show}">Create A Character</a></li>
                                     <li><a class="dropdown-item" th:href="@{/characters/show}">Your Characters</a></li>
                                     <li><a class="dropdown-item" th:href="@{/games/show}">Your Games</a></li>
                                     <li><a class="dropdown-item" th:href="@{/games/join}">Join Games</a></li>
