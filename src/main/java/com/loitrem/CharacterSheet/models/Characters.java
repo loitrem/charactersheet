@@ -48,12 +48,9 @@ public class Characters implements Serializable {
     String cAlignment;
 
     @NotNull
-    Long cLevel;
+    int cLevel;
 
     String cDeity;
-
-    @NonNull @NotBlank
-    String cHomeland;
 
     @NonNull @NotBlank
     String cRace;
@@ -64,7 +61,10 @@ public class Characters implements Serializable {
     @NonNull @NotBlank
     String cGender;
 
-    String cHeight;
+    @NotNull
+    int cAge;
+
+    int cHeight;
 
     int cWeight;
 
@@ -80,6 +80,9 @@ public class Characters implements Serializable {
 
     @NotNull
     int cCon;
+
+    @NotNull
+    int cInt;
 
     @NotNull
     int cWis;

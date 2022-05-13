@@ -18,6 +18,6 @@ public interface ICharactersRepo extends JpaRepository<Characters, Long> {
 
 
     @Query("SELECT e FROM Characters e WHERE e.cLevel LIKE %:level%")
-    List<Characters> findByCharacterLevel(@Param("level") Long level);
+    List<Characters> findByCharacterLevel(@Param("level") int level);
 
 }

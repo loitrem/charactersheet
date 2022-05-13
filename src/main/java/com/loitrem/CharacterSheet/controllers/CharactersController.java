@@ -8,11 +8,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
 @Slf4j
-@RequestMapping("characters")
+@RequestMapping("character")
 public class CharactersController {
 
     PlayersService playersService;
@@ -117,6 +118,41 @@ public class CharactersController {
         mCharacter.addAttribute("characters", c);
 
         return "characterbygame";
+    }
+
+    @GetMapping("/createcharacter")
+    public String displayCreateCharacter(){ return "createcharacter"; }
+
+
+    @PostMapping("/createcharacter")
+    public String createCharacter(@ModelAttribute("characters") @Valid Characters characters, Model mCharacter,@RequestParam("characterclass") String cClass, @RequestParam("charactername") String cName, @RequestParam("characterslignment") String cAlignment,
+                                  @RequestParam("characterlevel") int cLevel, @RequestParam("characterdeity") String cDeity, @RequestParam("characterrace") String cRace,
+                                  @RequestParam("characterage") int cAge, @RequestParam("characterdheight") int cHeight, @RequestParam("characterweight") int cWeight,
+                                  @RequestParam("characterhair") String cHair, @RequestParam("charactereye") String cEye){
+
+        //add collected info into model
+        Characters c = new Characters();
+        c.setCClass(cClass);
+        c.setCCharacterName(cName);
+        c.setCAlignment(cAlignment);
+        c.setCLevel(cLevel);
+        c.setCDeity(cDeity);
+        c.setCRace(cRace);
+        c.setCAge(cAge);
+        c.setCHeight(cHeight);
+        c.setCWeight(cWeight);
+        c.setCHairColor(cHair);
+        c.setCEyeColor(cEye);
+
+        //save to model
+        characterService.addCharacter(c);
+
+        c.setCId(c.getCId());
+
+        mCharacter.addAttribute("characters", c);
+
+        return "createcharacter2";
+
     }
 
 }
