@@ -123,11 +123,10 @@ public class CharactersController {
     @GetMapping("/createcharacter")
     public String displayCreateCharacter(){ return "createcharacter"; }
 
-
-    @PostMapping("/createcharacter")
-    public String createCharacter(@ModelAttribute("characters") @Valid Characters characters, Model mCharacter,@RequestParam("characterclass") String cClass, @RequestParam("charactername") String cName, @RequestParam("characterslignment") String cAlignment,
+    @PostMapping("/createcharacter2")
+    public String createCharacter(@ModelAttribute("characters") @Valid Characters characters, Model mCharacter,@RequestParam("characterclass") String cClass, @RequestParam("charactername") String cName, @RequestParam("characteralignment") String cAlignment,
                                   @RequestParam("characterlevel") int cLevel, @RequestParam("characterdeity") String cDeity, @RequestParam("characterrace") String cRace,
-                                  @RequestParam("characterage") int cAge, @RequestParam("characterdheight") int cHeight, @RequestParam("characterweight") int cWeight,
+                                  @RequestParam("characterage") int cAge, @RequestParam("characterheight") int cHeight, @RequestParam("characterweight") int cWeight,
                                   @RequestParam("characterhair") String cHair, @RequestParam("charactereye") String cEye){
 
         //add collected info into model
@@ -154,5 +153,7 @@ public class CharactersController {
         return "createcharacter2";
 
     }
+
+
 
 }

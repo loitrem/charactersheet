@@ -6,15 +6,12 @@ import org.hibernate.Hibernate;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Objects;
 
 @Getter
 @Setter
 @ToString
-@NoArgsConstructor
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity //database
@@ -39,19 +36,10 @@ public class CharacterWeapons implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cId")
     Characters wCharacters;
-
-    @NonNull @NotBlank
     String wName;
-
-    @NotNull
     int wAttackBonus;
-
-    @NonNull @NotBlank
     String wCrit;
-
-    @NonNull @NotBlank
     String wDamage;
-
     int wRange;
 
     @Override

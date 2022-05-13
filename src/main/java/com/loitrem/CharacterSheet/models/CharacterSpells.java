@@ -4,9 +4,8 @@ import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.hibernate.Hibernate;
 import org.springframework.stereotype.Component;
+
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -14,7 +13,6 @@ import java.util.Objects;
 @Setter
 @ToString
 @RequiredArgsConstructor
-@NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity //database
 @Component //spring boot component
@@ -23,7 +21,15 @@ public class CharacterSpells implements Serializable {
     private static final long serialVersionUID = -484664250685965320L;
 
     @Id //ID field
-
+    @SequenceGenerator( //creates a sequence
+            name = "CharacterSpells_sequence", //names the table in the database
+            sequenceName = "CharacterSpells_sequence", // sequence name
+            allocationSize = 1 // incriment by 1
+    )
+    @GeneratedValue(//tells what value to input
+            strategy = GenerationType.SEQUENCE, // says to use a sequence instead of auto increment aka GenerationType.IDENTITY
+            generator = "CharacterSpells_sequence" // use sequence name
+    )
     Long cspId;
 
     @ToString.Exclude
@@ -31,10 +37,7 @@ public class CharacterSpells implements Serializable {
     @JoinColumn(name = "cId")
     Characters cspCharacters;
 
-    @NonNull @NotBlank
     String cspName;
-
-    @NotNull
     int cspRank;
 
     @Override

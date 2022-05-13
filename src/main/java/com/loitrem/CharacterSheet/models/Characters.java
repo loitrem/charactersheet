@@ -6,17 +6,13 @@ import org.hibernate.Hibernate;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 
 @Getter
 @Setter
-@ToString
 @RequiredArgsConstructor
-@NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity //database
 @Component //spring boot component
@@ -36,103 +32,48 @@ public class Characters implements Serializable {
     )
     Long cId;
 
-    @NonNull @NotBlank
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "pId", nullable = false)
+    @ToString.Exclude
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "pId")
     Players cPlayer;
 
-    @NonNull @NotBlank
     String cCharacterName;
-
-    @NonNull @NotBlank
     String cAlignment;
-
-    @NotNull
     int cLevel;
-
     String cDeity;
-
-    @NonNull @NotBlank
     String cRace;
-
-    @NotBlank
     String cSize;
-
-    @NonNull @NotBlank
     String cGender;
-
-    @NotNull
     int cAge;
-
     int cHeight;
-
     int cWeight;
-
     String cHairColor;
-
     String cEyeColor;
-
-    @NotNull
     int cStr;
-
-    @NotNull
     int cDex;
-
-    @NotNull
     int cCon;
-
-    @NotNull
     int cInt;
-
-    @NotNull
     int cWis;
-
-    @NotNull
     int cCha;
-
-    @NotNull
     int cHp;
-
-    @NotNull
     int cSpeed;
-
     int cInitMiscModifier;
-
-    @NotNull
     int cFort;
-
-    @NotNull
     int cReflex;
-
-    @NotNull
     int cWill;
-
-    @NotNull
     int cAttackBonus;
-
-    @NonNull @NotBlank
     String cClass;
-
-    @NotNull
     int cAC;
-
-    @NotNull
     int cTouchAC;
-
-    @NotNull
     int cFlatFootedAC;
-
-    @NotNull
     int cSpellResist;
 
     @ToString.Exclude
     @OneToMany(mappedBy = "wCharacters", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @NonNull @NotBlank
     List<CharacterWeapons> cWeapon;
 
     @ToString.Exclude
     @OneToMany(mappedBy = "csCharacters", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @NonNull @NotBlank
     List<CharacterSkills> cSkills;
 
     int cSpellsKnows0;
@@ -180,18 +121,18 @@ public class Characters implements Serializable {
 
     @ToString.Exclude
     @OneToMany(mappedBy = "cspCharacters", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @NonNull @NotBlank
     List<CharacterSpells> cSpells;
 
     @ToString.Exclude
     @OneToMany(mappedBy = "lCharacters", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @NonNull @NotBlank
     List<CharacterLanguages> cLanguages;
 
     @ToString.Exclude
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "Games_Id", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "Games_Id")
     Games cGames;
+
+
 
     @Override
     public boolean equals(Object o) {

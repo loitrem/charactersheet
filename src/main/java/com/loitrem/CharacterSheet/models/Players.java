@@ -6,7 +6,6 @@ import org.hibernate.Hibernate;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import java.io.Serializable;
 import java.util.List;
@@ -15,7 +14,6 @@ import java.util.Objects;
 @Getter
 @Setter
 @ToString
-@NoArgsConstructor
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity //database
@@ -34,19 +32,15 @@ public class Players implements Serializable {
             generator = "Players_sequence" // use sequence name
     )
     Long pId;
-
-    @NotBlank @NonNull
     String pPlayerName;
-
-    @NotBlank @NonNull
     String pUserType;
 
-    @NonNull @NotBlank @Column(unique = true) //cannot be null/blank and must be unique
+    @Column(unique = true) //cannot be null/blank and must be unique
     @Pattern(regexp = "^[A-Za-z0-9]\\w{5,}$", message = "Must contain at least 6 characters\n" +
             "Must only contain letters or numbers")
     String pUsername;
 
-    @NonNull @NotBlank//cannot be null/blank
+
     @Pattern(regexp = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$", message = "Must contain at least 8 characters\n" +
             "At least 1 upper case letter\n" +
             "At least 1 lower case letter\n" +
@@ -61,6 +55,13 @@ public class Players implements Serializable {
     @OneToMany(mappedBy = "gGameCreator", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @ToString.Exclude
     List<Games> pGamesCreated;
+
+    public Players(String pPlayerName, String pUserType, String pUsername, String pPassword) {
+        this.pPlayerName = pPlayerName;
+        this.pUserType = pUserType;
+        this.pUsername = pUsername;
+        this.pPassword = pPassword;
+    }
 
     public void setpGamesCreated(List<Games> pGamesCreated) {
         this.pGamesCreated = pGamesCreated;

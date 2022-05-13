@@ -7,8 +7,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -17,7 +15,7 @@ import java.util.Objects;
 @Getter
 @Setter
 @ToString
-@NoArgsConstructor
+@RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity //database
 @Component //spring boot component
@@ -36,14 +34,11 @@ public class Games implements Serializable {
     )
     Long gId;
 
-    @NotBlank @NonNull
     String gName;
-
     String gDescription;
 
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    @NonNull @NotNull
     Date gStartDate;
 
     @ToString.Exclude
@@ -55,13 +50,10 @@ public class Games implements Serializable {
     @JoinColumn(name = "pGamesCreated", nullable = false)
     Players gGameCreator;
 
-    public Games(Long gId, @NonNull String gName, String gDescription, @NonNull Date gStartDate, List<Characters> gCharacters, Players gGameCreator) {
-        this.gId = gId;
+    public Games(String gName, String gDescription, Date gStartDate) {
         this.gName = gName;
         this.gDescription = gDescription;
         this.gStartDate = gStartDate;
-        this.gCharacters = gCharacters;
-        this.gGameCreator = gGameCreator;
     }
 
     @Override

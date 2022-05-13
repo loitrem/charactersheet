@@ -42,6 +42,10 @@ public class CharacterLanguages implements Serializable {
     @NonNull @NotBlank
     String lName;
 
+    public CharacterLanguages(Characters lCharacters, @NonNull String lName) {
+        this.lCharacters = lCharacters;
+        this.lName = lName;
+    }
 
     @Override
     public boolean equals(Object o) {
