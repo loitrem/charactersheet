@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.thymeleaf.org http://www.thymeleaf.org
+  http://www.ultraq.net.nz/thymeleaf/layout http://www.ultraq.net.nz/thymeleaf/layout
+  http://www.thymeleaf.org/thymeleaf-extras-springsecurity4 http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Loitrem's Character Sheet Thingy</title>
+    <!-- Favicon-->
+<!--    <link rel="icon" type="image/x-icon" href="../assets/favicon.ico" />-->
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <div th:replace="fragments/css"></div>
+</head>
+<body class="mx-auto">
+<div th:replace="fragments/navbaruser"></div>
+<!-- Page content-->
+<div class="container">
+    <h3 class="mt-5"> Show All Employees </h3>
+
+    <table class="table table-primary table-striped table-hover fs-4 shadow">
+        <thead>
+        <tr>
+            <th scope="col">Player Name</th>
+            <th scope="col">DM</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="p : ${players}">
+
+            <td th:text="${p.pPlayerName}"></td>
+            <td th:switch="${p.pUserType}"><span th:case="'ROLE_AUTH_USER'"><img th:src="@{/assets/checkmark.png}" style="width:50px;"/></span><span th:case="*"></span></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<!-- Bootstrap core JS-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+<!-- Core theme JS-->
+<script src="../js/scripts.js"></script>
+</body>
+</html>

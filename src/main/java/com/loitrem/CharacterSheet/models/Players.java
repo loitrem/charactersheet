@@ -16,6 +16,7 @@ import java.util.Objects;
 @Setter
 @ToString
 @NoArgsConstructor
+@RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity //database
 @Component //spring boot component
@@ -54,6 +55,7 @@ public class Players implements Serializable {
     String pPassword;
 
     @OneToMany(mappedBy = "cPlayer", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ToString.Exclude
     List<Characters> pCharacters;
 
     @OneToMany(mappedBy = "gGameCreator", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -66,14 +68,6 @@ public class Players implements Serializable {
 
     public List<Games> getpGamesCreated() {
         return pGamesCreated;
-    }
-
-    public Players(Long pId, @NonNull String pPlayerName, @NonNull String pUsername, @NonNull String pPassword, List<Games> pGamesCreated) {
-        this.pId = pId;
-        this.pPlayerName = pPlayerName;
-        this.pUsername = pUsername;
-        this.pPassword = pPassword;
-        this.pGamesCreated = pGamesCreated;
     }
 
     @Override

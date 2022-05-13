@@ -38,7 +38,7 @@ public class PlayersController {
     public String home(){ return "home"; }
 
     //Shows list of all players
-    @GetMapping("/showplayers")
+    @GetMapping("/show")
     public String showPlayers(Model mPlayers){
         List<Players> p = playersService.findAllPlayers();
         mPlayers.addAttribute("players", p);
