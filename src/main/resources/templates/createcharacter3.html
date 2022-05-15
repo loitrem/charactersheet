@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.thymeleaf.org http://www.thymeleaf.org
+  http://www.ultraq.net.nz/thymeleaf/layout http://www.ultraq.net.nz/thymeleaf/layout
+  http://www.thymeleaf.org/thymeleaf-extras-springsecurity4 http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Loitrem's Character Sheet Thingy</title>
+    <!-- Favicon-->
+    <!--    <link rel="icon" type="image/x-icon" href="../assets/favicon.ico" />-->
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <div th:replace="fragments/css"></div>
+</head>
+<body class="mx-auto">
+<div th:replace="fragments/navbaruser"></div>
+<!-- Page content-->
+<div class="container">
+    <h3 class="mt-5"> Create A Character - Step 1 </h3>
+    <form th:action="@{/character/createcharacter2}" method="post" th:object="${characters}">
+        <table class="table table-primary table-striped table-hover fs-4 shadow mt-3">
+            <tr>
+                <td colspan="2" class="mx-auto mt-5 fs-4 fw-bold text-danger error text-center"  th:text="${error}"></td>
+            </tr>
+            <tr>
+                <td class="fw-bold fs-4">Class:</td>
+                <td class="fs-4">
+                    <select class="form-select fs-4" id="characterclass" name="characterclass">
+                        <option value="Barbarian">Barbarian</option>
+                        <option value="Bard">Bard</option>
+                        <option value="Cleric">Cleric</option>
+                        <option value="Druid">Druid</option>
+                        <option value="Fighter">Fighter</option>
+                        <option value="Monk">Monk</option>
+                        <option value="Paladin">Paladin</option>
+                        <option value="Ranger">Ranger</option>
+                        <option value="Rogue">Rogue</option>
+                        <option value="Sorcerer">Sorcerer</option>
+                        <option value="Wizard">Wizard</option>
+                    </select> * Required
+                </td>
+            </tr>
+            <tr>
+                <td class="fw-bold fs-4">Character Name:</td>
+                <td class="fs-4">
+                    <input type="text" name="charactername" class="form-control fs-4" id="charactername">
+                </td> * Required
+            </tr>
+            <tr>
+                <td class="fw-bold fs-4">Alignment:</td>
+                <td class="fs-4">
+                    <select class="form-select fs-4" id="characteralignment" name="characteralignment">
+                        <option value="lg">Lawful Good</option>
+                        <option value="ng">Neutral Good</option>
+                        <option value="cg">Chaotic Good</option>
+                        <option value="ln">Lawful Neutral</option>
+                        <option value="n">Neutral</option>
+                        <option value="cn">Chaotic Neutral</option>
+                        <option value="le">Lawful Evil</option>
+                        <option value="ne">Neutral Evil</option>
+                        <option value="ce">Chaotic Evil</option>
+                    </select> * Required
+                </td>
+            </tr>
+            <tr>
+                <td class="fw-bold fs-4">Level:</td>
+                <td class="fs-4">
+                    <select class="form-select fs-4" id="characterlevel" name="characterlevel">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                        <option value="16">16</option>
+                        <option value="17">17</option>
+                        <option value="18">18</option>
+                        <option value="19">19</option>
+                        <option value="20">20</option>
+                    </select> * Required
+                </td>
+            </tr>
+            <tr>
+                <td class="fw-bold fs-4">Deity:</td>
+                <td class="fs-4">
+                    <input type="text" name="characterdeity" class="form-control fs-4" id="characterdeity">
+                </td>
+            </tr>
+            <tr>
+                <td class="fw-bold fs-4">Race:</td>
+                <td class="fs-4">
+                    <select class="form-select fs-4" id="characterrace" name="characterrace">
+                        <option value="dwarf">Dwarf</option>
+                        <option value="elf">Elf</option>
+                        <option value="gnome">Gnome</option>
+                        <option value="halfelf">Half Elf</option>
+                        <option value="halforc">Half Orc</option>
+                        <option value="halfling">Halfling</option>
+                        <option value="human">Human</option>
+                    </select> * Required
+                </td>
+            </tr>
+            <tr>
+                <td class="fw-bold fs-4">Gender:</td>
+                <td class="fs-4">
+                    <input type="text" name="charactergender" class="form-control fs-4" id="charactergender">
+                </td> * Required
+            </tr>
+            <tr>
+                <td class="fw-bold fs-4">Age:</td>
+                <td class="fs-4">
+                    <input type="number" name="characterage" class="form-control fs-4" id="characterage">
+                </td> * Required
+            </tr>
+            <tr>
+                <td class="fw-bold fs-4">Height:</td>
+                <td class="fs-4">
+                    <input type="number" name="characterheight" class="form-control fs-4" id="characterheight">
+                </td>
+            </tr>
+            <tr>
+                <td class="fw-bold fs-4">Weight:</td>
+                <td class="fs-4">
+                    <input type="number" name="characterweight" class="form-control fs-4" id="characterweight">
+                </td>
+            </tr>
+            <tr>
+                <td class="fw-bold fs-4">Hair Color:</td>
+                <td class="fs-4">
+                    <input type="text" name="characterhair" class="form-control fs-4" id="characterhair">
+                </td>
+            </tr>
+            <tr>
+                <td class="fw-bold fs-4">Eye Color:</td>
+                <td class="fs-4">
+                    <input type="text" name="charactereye" class="form-control fs-4" id="charactereye">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"><button type="submit" class="btn btn-primary fs-4">Save & Continue</button></td>
+            </tr>
+        </table>
+    </form>
+</div>
+<!-- Bootstrap core JS-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+<!-- Core theme JS-->
+<script src="../js/scripts.js"></script>
+</body>
+</html>
