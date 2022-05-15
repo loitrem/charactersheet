@@ -10,4 +10,6 @@ import java.util.List;
 public interface ICharacterSkillsRepo extends JpaRepository<CharacterSkills, Long> {
 
     List<CharacterSkills> findBycsId(long id);
+
+    CharacterSkills addClassSkills(CharacterSkills cs);
 }

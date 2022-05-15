@@ -41,7 +41,7 @@ public class CharacterSkills implements Serializable {
     int csAcrobaticsAbilityMod;
     int csAcrobaticsRanks;
     int csAcrobaticsMiscMod;
-    boolean csAcrobaticClass;
+    boolean csAcrobaticsClass;
 
     int csAppraiseAbilityMod;
     int csAppraiseRanks;
