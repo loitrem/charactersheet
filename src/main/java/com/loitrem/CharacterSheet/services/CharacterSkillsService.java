@@ -28,7 +28,7 @@ public class CharacterSkillsService {
         return null;
     }
 
-    public CharacterSkills addClassSkills(Long id){
+    public void addClassSkills(Long id){
         //find characters info
         Characters c =  characterService.findById(id);
 
@@ -247,7 +247,7 @@ public class CharacterSkillsService {
                 break;
         }
 
-
+        iCharacterSkillsRepo.save(cs);
 
     }
 
