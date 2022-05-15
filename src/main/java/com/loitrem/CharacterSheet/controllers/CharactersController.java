@@ -155,14 +155,17 @@ public class CharactersController {
     }
 
     @PostMapping("/createcharacter3")
-    public String createCharacter2(@ModelAttribute("characters") @Valid Characters characters, Model mCharacter,@RequestParam("str") int cStr, @RequestParam("dex") int cDex, 
+    public String createCharacter2(@ModelAttribute("characters") @Valid Characters characters, Model mCharacter, @RequestParam("str") String cStr, @RequestParam("dex") int cDex,
                                    @RequestParam("con") int cCon, @RequestParam("int") int cInt, @RequestParam("wis") int cWis, @RequestParam("cha") int cCha, @RequestParam("cId") Long cId){
 
         //find character by id
         Characters c = characterService.findById(cId);
+
+        //convert params to int
+        int str = Integer.parseInt(cStr);
         
         //add collected info into character
-        c.setCStr(cStr);
+        c.setCStr(str);
         c.setCDex(cDex);
         c.setCCon(cCon);
         c.setCInt(cInt);

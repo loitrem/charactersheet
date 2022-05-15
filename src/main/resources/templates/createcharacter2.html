@@ -23,60 +23,59 @@
 <!-- Page content-->
 <div class="container">
     <h3 class="mt-5"> Create A Character - Step 2 </h3>
-<!--    dd-->
     <script>
         function insertStr(){
-            let strNum = Math.floor(Math.random() * 20) + 1;
-            let strId = document.getElementById('str').innerHTML;
-            strId.setAttribute('value', strNum;
+            document.getElementById('str').value = Math.floor(Math.random() * 20) + 1;
         }
         function insertDex(){
-            document.getElementById('dex').innerHTML = Math.floor(Math.random() * 20) + 1;
+            document.getElementById('dex').value = Math.floor(Math.random() * 20) + 1;
         }
         function insertCon(){
-            document.getElementById('con').innerHTML = Math.floor(Math.random() * 20) + 1;
+            document.getElementById('con').value = Math.floor(Math.random() * 20) + 1;
         }
         function insertInt(){
-            document.getElementById('int').innerHTML = Math.floor(Math.random() * 20) + 1;
+            document.getElementById('int').value = Math.floor(Math.random() * 20) + 1;
         }
         function insertWis(){
-            document.getElementById('wis').innerHTML = Math.floor(Math.random() * 20) + 1;
+            document.getElementById('wis').value = Math.floor(Math.random() * 20) + 1;
         }
         function insertCha(){
-            document.getElementById('cha').innerHTML = Math.floor(Math.random() * 20) + 1;
+            document.getElementById('cha').value = Math.floor(Math.random() * 20) + 1;
         }
     </script>
-    <form th:action="@{/character/createcharacter3}" method="post" th:object="${characters}">
+    <!--    dd-->
+    <form name="cc2" id="cc2" th:action="@{/character/createcharacter3}" method="post" th:object="${characters}">
         <table class="table table-primary table-striped table-hover fs-4 shadow mt-3">
             <tr>
                 <td width="175px;"><button style="width: 150px;" type="button" class="btn btn-primary fs-4" onClick="insertStr()">Roll STR</button></td>
-                <td width="175px;"><label for="strTd" class="form-label fs-4">STR </label></td>
-                <td id="strTd" class="fw-bold fs-4"><input type="hidden" id="str" name="str"></td>
+                <td width="175px;"><label for="str" class="form-label fs-4">STR </label></td>
+                <td class="fw-bold fs-4"><input type="text" id="str" name="str" readonly>
+                </td>
             </tr>
             <tr>
                 <td width="175px;"><button style="width: 150px;" type="button" class="btn btn-primary fs-4" onClick="insertDex()">Roll DEX</button></td>
-                <td width="175px;"><label for="dexTd" class="form-label fs-4">DEX </label></td>
-                <td id="dexTd" class="fw-bold fs-4"><input type="hidden" id="drx" name="str"></td>
+                <td width="175px;"><label for="dex" class="form-label fs-4">DEX </label></td>
+                <td class="fw-bold fs-4"><input type="text" id="dex" name="dex" readonly></td>
             </tr>
             <tr>
                 <td width="175px;"><button style="width: 150px;" type="button" class="btn btn-primary fs-4" onClick="insertCon()">Roll CON</button></td>
-                <td width="175px;"><label for="conTd" class="form-label fs-4">CON </label></td>
-                <td id="conTd" class="fw-bold fs-4"><input type="hidden" id="con" name="str"></td>
+                <td width="175px;"><label for="con" class="form-label fs-4">CON </label></td>
+                <td class="fw-bold fs-4"><input type="text" id="con" name="con" readonly></td>
             </tr>
             <tr>
                 <td width="175px;"><button style="width: 150px;" type="button" class="btn btn-primary fs-4" onClick="insertInt()">Roll INT</button></td>
-                <td width="175px;"><label for="intTd" class="form-label fs-4">INT </label></td>
-                <td id="intTd" class="fw-bold fs-4"><input type="hidden" id="int" name="str"></td>
+                <td width="175px;"><label for="int" class="form-label fs-4">INT </label></td>
+                <td class="fw-bold fs-4"><input type="text" id="int" name="int" readonly></td>
             </tr>
             <tr>
                 <td width="175px;"><button style="width: 150px;" type="button" class="btn btn-primary fs-4" onClick="insertWis()">Roll WIS</button></td>
-                <td width="175px;"><label for="wisTd" class="form-label fs-4">WIS </label></td>
-                <td id="wisTd" class="fw-bold fs-4"><input type="hidden" id="wis" name="str"></td>
+                <td width="175px;"><label for="wis" class="form-label fs-4">WIS </label></td>
+                <td class="fw-bold fs-4"><input type="text" id="wis" name="wis" readonly></td>
             </tr>
             <tr>
                 <td width="175px;"><button style="width: 150px;" type="button" class="btn btn-primary fs-4" onClick="insertCha()">Roll CHA</button></td>
-                <td width="175px;"><label for="chaTd" class="form-label fs-4">CHA </label></td>
-                <td id="chaTd" class="fw-bold fs-4"><input type="hidden" id="cha" name="str"></td>
+                <td width="175px;"><label for="cha" class="form-label fs-4">CHA </label></td>
+                <td class="fw-bold fs-4"><input type="text" id="cha" name="cha" readonly></td>
             </tr>
             <tr>
                 <td colspan="3">
