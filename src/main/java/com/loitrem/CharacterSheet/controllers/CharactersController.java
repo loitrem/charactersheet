@@ -154,6 +154,32 @@ public class CharactersController {
 
     }
 
+    @PostMapping("/createcharacter3")
+    public String createCharacter2(@ModelAttribute("characters") @Valid Characters characters, Model mCharacter,@RequestParam("str") int cStr, @RequestParam("dex") int cDex, 
+                                   @RequestParam("con") int cCon, @RequestParam("int") int cInt, @RequestParam("wis") int cWis, @RequestParam("cha") int cCha, @RequestParam("cId") Long cId){
 
+        //find character by id
+        Characters c = characterService.findById(cId);
+        
+        //add collected info into character
+        c.setCStr(cStr);
+        c.setCDex(cDex);
+        c.setCCon(cCon);
+        c.setCInt(cInt);
+        c.setCWis(cWis);
+        c.setCCha(cCha);
+
+        //save to model
+        characterService.addCharacterStep2(c);
+
+        //pull current info of character
+        Characters character = characterService.findById(cId);
+
+        //add character to model
+        mCharacter.addAttribute("characters", character);
+
+        return "createcharacter3";
+
+    }
 
 }
