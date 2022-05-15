@@ -11,5 +11,4 @@ public interface ICharacterSkillsRepo extends JpaRepository<CharacterSkills, Lon
 
     List<CharacterSkills> findBycsId(long id);
 
-    CharacterSkills addClassSkills(CharacterSkills cs);
 }

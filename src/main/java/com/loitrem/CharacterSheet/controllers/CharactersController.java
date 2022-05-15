@@ -56,7 +56,7 @@ public class CharactersController {
         Characters c = characterService.findById(id);
         List<CharacterLanguages> cl = c.getCLanguages();
         List<CharacterSpells> csp = c.getCSpells();
-        List<CharacterSkills> csk = c.getCSkills();
+        CharacterSkills csk = c.getCSkills();
         Players p = c.getCPlayer();
         Games g = c.getCGames();
 
@@ -76,7 +76,7 @@ public class CharactersController {
         Characters c = characterService.findById(id);
         List<CharacterLanguages> cl = c.getCLanguages();
         List<CharacterSpells> csp = c.getCSpells();
-        List<CharacterSkills> csk = c.getCSkills();
+        CharacterSkills csk = c.getCSkills();
         Players p = c.getCPlayer();
         Games g = c.getCGames();
 
@@ -178,10 +178,13 @@ public class CharactersController {
         //pull current info of character
         Characters character = characterService.findById(cId);
 
+        //add class skills for character skills
+        characterSkillsService.addClassSkills(c.getCId());
+
         //add character to model
         mCharacter.addAttribute("characters", character);
 
-        return "createcharacter3";
+        return "createcharacter4";
 
     }
 

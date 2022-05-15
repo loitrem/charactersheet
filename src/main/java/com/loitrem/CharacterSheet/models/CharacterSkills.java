@@ -36,6 +36,7 @@ public class CharacterSkills implements Serializable {
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cId")
     Characters csCharacters;
+
     int csSkillPoints;
 
     int csAcrobaticsAbilityMod;
