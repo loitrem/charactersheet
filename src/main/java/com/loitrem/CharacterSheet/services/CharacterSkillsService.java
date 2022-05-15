@@ -14,13 +14,11 @@ public class CharacterSkillsService {
     ICharacterSkillsRepo iCharacterSkillsRepo;
     CharacterService characterService;
 
+    @Autowired
     public CharacterSkillsService(ICharacterSkillsRepo iCharacterSkillsRepo, CharacterService characterService) {
         this.iCharacterSkillsRepo = iCharacterSkillsRepo;
         this.characterService = characterService;
     }
-
-    @Autowired
-
 
     public List<CharacterSkills> findById(Long id) {
         if (id != 0)
@@ -169,22 +167,87 @@ public class CharacterSkillsService {
                 break;
 
             case "Ranger":
+                cs.setCsClimbClass(true);
+                cs.setCsCraftClass(true);
+                cs.setCsHandleAnimalClass(true);
+                cs.setCsHealClass(true);
+                cs.setCsIntimidateClass(true);
+                cs.setCsKnowledgeDungeoneeringClass(true);
+                cs.setCsKnowledgeGeographyClass(true);
+                cs.setCsKnowledgeNatureClass(true);
+                cs.setCsPerceptionClass(true);
+                cs.setCsProfessionClass(true);
+                cs.setCsRideClass(true);
+                cs.setCsSpellcraftClass(true);
+                cs.setCsStealthClass(true);
+                cs.setCsSurvivalClass(true);
+                cs.setCsSwimClass(true);
 
                 break;
 
             case "Rogue":
+                cs.setCsAcrobaticsClass(true);
+                cs.setCsAppraiseClass(true);
+                cs.setCsBluffClass(true);
+                cs.setCsClimbClass(true);
+                cs.setCsCraftClass(true);
+                cs.setCsDiplomacyClass(true);
+                cs.setCsDisableDeviceClass(true);
+                cs.setCsDisguiseClass(true);
+                cs.setCsEscapeArtistClass(true);
+                cs.setCsIntimidateClass(true);
+                cs.setCsKnowledgeDungeoneeringClass(true);
+                cs.setCsKnowledgeLocalClass(true);
+                cs.setCsLinguisticsClass(true);
+                cs.setCsPerceptionClass(true);
+                cs.setCsPerformClass(true);
+                cs.setCsProfessionClass(true);
+                cs.setCsSenseMotiveClass(true);
+                cs.setCsSleightOfHandClass(true);
+                cs.setCsStealthClass(true);
+                cs.setCsSwimClass(true);
+                cs.setCsUseMagicDeviceClass(true);
 
                 break;
 
             case "Sorcerer":
+                cs.setCsAppraiseClass(true);
+                cs.setCsBluffClass(true);
+                cs.setCsCraftClass(true);
+                cs.setCsFlyClass(true);
+                cs.setCsIntimidateClass(true);
+                cs.setCsKnowledgeArcanaClass(true);
+                cs.setCsProfessionClass(true);
+                cs.setCsSpellcraftClass(true);
+                cs.setCsUseMagicDeviceClass(true);
 
                 break;
 
             case "Wizard":
+                cs.setCsAppraiseClass(true);
+                cs.setCsCraftClass(true);
+                cs.setCsFlyClass(true);
+                cs.setCsDisguiseClass(true);
+                cs.setCsEscapeArtistClass(true);
+                cs.setCsIntimidateClass(true);
+                cs.setCsKnowledgeArcanaClass(true);
+                cs.setCsKnowledgeDungeoneeringClass(true);
+                cs.setCsKnowledgeEngineeringClass(true);
+                cs.setCsKnowledgeGeographyClass(true);
+                cs.setCsKnowledgeHistoryClass(true);
+                cs.setCsKnowledgeLocalClass(true);
+                cs.setCsKnowledgeNatureClass(true);
+                cs.setCsKnowledgeNobilityClass(true);
+                cs.setCsKnowledgePlanesClass(true);
+                cs.setCsKnowledgeReligionClass(true);
+                cs.setCsLinguisticsClass(true);
+                cs.setCsProfessionClass(true);
+                cs.setCsSpellcraftClass(true);
 
                 break;
-
         }
+
+
 
     }
 
