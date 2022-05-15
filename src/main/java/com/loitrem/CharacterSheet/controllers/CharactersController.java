@@ -184,7 +184,7 @@ public class CharactersController {
         //add character to model
         mCharacter.addAttribute("characters", character);
 
-        return "createcharacter4";
+        return "createcharacter3";
 
     }
 
