@@ -73,7 +73,7 @@ public class Characters implements Serializable {
     List<CharacterWeapons> cWeapon;
 
     @ToString.Exclude
-    @OneToMany(mappedBy = "csCharacters", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "csCharacters", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     List<CharacterSkills> cSkills;
 
     int cSpellsKnows0;
