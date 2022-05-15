@@ -58,15 +58,7 @@ public class CharacterService {
 
     //add new character step 2
     @Transactional
-    public void addCharacterSetp2(Long id, Characters updateCharacter){
-        Characters c = findById(id);
-        c.setCStr(updateCharacter.getCStr());
-        c.setCDex(updateCharacter.getCDex());
-        c.setCCon(updateCharacter.getCCon());
-        c.setCInt(updateCharacter.getCInt());
-        c.setCWis(updateCharacter.getCWis());
-        c.setCCha(updateCharacter.getCCha());
-
+    public void addCharacterStep2(Characters c){
         iCharactersRepo.save(c);
     }
 }
