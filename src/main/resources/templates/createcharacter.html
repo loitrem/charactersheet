@@ -26,7 +26,7 @@
     <form th:action="@{/character/createcharacter2}" method="post" th:object="${characters}">
     <table class="table table-primary table-striped table-hover fs-4 shadow mt-3">
         <tr>
-            <td class="mx-auto mt-5 fs-4 fw-bold text-danger error text-center"  th:text="${error}"></td>
+            <td colspan="2" class="mx-auto mt-5 fs-4 fw-bold text-danger error text-center"  th:text="${error}"></td>
         </tr>
         <tr>
             <td class="fw-bold fs-4">Class:</td>
@@ -152,7 +152,7 @@
             </td>
         </tr>
         <tr>
-            <td><button type="submit" class="btn btn-primary fs-4">Save & Continue</button></td>
+            <td colspan="2"><button type="submit" class="btn btn-primary fs-4">Save & Continue</button></td>
         </tr>
     </table>
     </form>
