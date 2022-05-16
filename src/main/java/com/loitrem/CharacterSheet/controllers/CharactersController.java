@@ -129,28 +129,32 @@ public class CharactersController {
                                   @RequestParam("characterage") int cAge, @RequestParam("characterheight") int cHeight, @RequestParam("characterweight") int cWeight,
                                   @RequestParam("characterhair") String cHair, @RequestParam("charactereye") String cEye){
 
-        //add collected info into model
-        Characters c = new Characters();
-        c.setCClass(cClass);
-        c.setCCharacterName(cName);
-        c.setCAlignment(cAlignment);
-        c.setCLevel(cLevel);
-        c.setCDeity(cDeity);
-        c.setCRace(cRace);
-        c.setCAge(cAge);
-        c.setCHeight(cHeight);
-        c.setCWeight(cWeight);
-        c.setCHairColor(cHair);
-        c.setCEyeColor(cEye);
+        if(cRace!="Half Elf") {
+            //add collected info into model
+            Characters c = new Characters();
+            c.setCClass(cClass);
+            c.setCCharacterName(cName);
+            c.setCAlignment(cAlignment);
+            c.setCLevel(cLevel);
+            c.setCDeity(cDeity);
+            c.setCRace(cRace);
+            c.setCAge(cAge);
+            c.setCHeight(cHeight);
+            c.setCWeight(cWeight);
+            c.setCHairColor(cHair);
+            c.setCEyeColor(cEye);
 
-        //save to model
-        characterService.addCharacter(c);
+            //save to model
+            characterService.addCharacter(c);
 
-        c.setCId(c.getCId());
+            c.setCId(c.getCId());
 
-        mCharacter.addAttribute("characters", c);
+            mCharacter.addAttribute("characters", c);
 
-        return "createcharacter2";
+            return "createcharacter2";
+        }
+
+
 
     }
 

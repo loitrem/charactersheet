@@ -5,6 +5,7 @@ import com.loitrem.CharacterSheet.models.CharacterSkills;
 import com.loitrem.CharacterSheet.models.Characters;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -28,6 +29,7 @@ public class CharacterSkillsService {
         return null;
     }
 
+    @Transactional
     public void addClassSkills(Long id){
         //find characters info
         Characters c =  characterService.findById(id);
@@ -248,6 +250,94 @@ public class CharacterSkillsService {
         }
 
         iCharacterSkillsRepo.save(cs);
+
+    }
+
+    @Transactional
+    public void addTotalSkillPoints(Long id){
+
+        //pull the objects for characters and skills
+        Characters c = characterService.findById(id);
+        CharacterSkills cs = iCharacterSkillsRepo.getById(c.getCSkills().getCsId());
+
+        int baseSkillPoints = 0;
+        int racialSkillPoints = 0;
+        int totalSkillPoints = 0;
+
+
+        // set base skill points based on class and level
+        switch (c.getCClass()){
+            case "Barbarian":
+                baseSkillPoints = c.getCLevel() + (c.getCInt() + 4);
+
+                break;
+
+            case "Bard":
+                baseSkillPoints = c.getCLevel() + (c.getCInt() + 6);
+
+                break;
+
+            case "Cleric":
+                baseSkillPoints = c.getCLevel() + (c.getCInt() + 2);
+
+                break;
+
+            case "Druid":
+                baseSkillPoints = c.getCLevel() + (c.getCInt() + 4);
+
+                break;
+
+            case "Fighter":
+                baseSkillPoints = c.getCLevel() + (c.getCInt() + 2);
+
+                break;
+
+            case "Monk":
+                baseSkillPoints = c.getCLevel() + (c.getCInt() + 4);
+
+                break;
+
+            case "Paladin":
+                baseSkillPoints = c.getCLevel() + (c.getCInt() + 2);
+
+                break;
+
+            case "Ranger":
+                baseSkillPoints = c.getCLevel() + (c.getCInt() + 6);
+
+                break;
+
+            case "Rogue":
+                baseSkillPoints = c.getCLevel() + (c.getCInt() + 8);
+
+                break;
+
+            case "Sorcerer":
+                baseSkillPoints = c.getCLevel() + (c.getCInt() + 2);
+
+                break;
+
+            case "Wizard":
+                baseSkillPoints = c.getCLevel() + (c.getCInt() + 2);
+
+                break;
+        }
+
+        // set racial skill points
+        switch (c.getCClass()){
+            case "Half Elf":
+                if (c.iscHalfElfRacialSp()){
+                    racialSkillPoints = c.getCLevel();
+                }
+
+                break;
+
+            case "Human":
+                racialSkillPoints = c.getCLevel();
+
+                break;
+
+        }
 
     }
 

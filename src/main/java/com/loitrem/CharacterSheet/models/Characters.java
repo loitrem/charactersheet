@@ -42,6 +42,9 @@ public class Characters implements Serializable {
     int cLevel;
     String cDeity;
     String cRace;
+
+    boolean cHalfElfRacialSp;
+
     String cSize;
     String cGender;
     int cAge;
@@ -132,7 +135,17 @@ public class Characters implements Serializable {
     @JoinColumn(name = "Games_Id")
     Games cGames;
 
+    public Characters(boolean cHalfElfRacialSp) {
+        this.cHalfElfRacialSp = cHalfElfRacialSp;
+    }
 
+    public boolean iscHalfElfRacialSp() {
+        return cHalfElfRacialSp;
+    }
+
+    public void setcHalfElfRacialSp(boolean cHalfElfRacialSp) {
+        this.cHalfElfRacialSp = cHalfElfRacialSp;
+    }
 
     @Override
     public boolean equals(Object o) {
