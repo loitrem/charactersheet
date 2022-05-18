@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Objects;
 
 @Controller
 @Slf4j
@@ -123,15 +124,18 @@ public class CharactersController {
     @GetMapping("/createcharacter")
     public String displayCreateCharacter(){ return "createcharacter"; }
 
-    @PostMapping("/createcharacter2")
-    public String createCharacter(@ModelAttribute("characters") @Valid Characters characters, Model mCharacter,@RequestParam("characterclass") String cClass, @RequestParam("charactername") String cName, @RequestParam("characteralignment") String cAlignment,
-                                  @RequestParam("characterlevel") int cLevel, @RequestParam("characterdeity") String cDeity, @RequestParam("characterrace") String cRace,
-                                  @RequestParam("characterage") int cAge, @RequestParam("characterheight") int cHeight, @RequestParam("characterweight") int cWeight,
-                                  @RequestParam("characterhair") String cHair, @RequestParam("charactereye") String cEye){
 
-        if(cRace!="Half Elf") {
+    @PostMapping("/createcharacter2")
+    public String createCharacter(@ModelAttribute("characters") @Valid Characters characters, Model mCharacter,@RequestParam("characterclass") String cClass,
+                                  @RequestParam("charactername") String cName, @RequestParam("characteralignment") String cAlignment, @RequestParam("characterlevel") int cLevel,
+                                  @RequestParam("characterdeity") String cDeity, @RequestParam("characterrace") String cRace, @RequestParam("characterage") int cAge,
+                                  @RequestParam("characterheight") int cHeight, @RequestParam("characterweight") int cWeight, @RequestParam("characterhair") String cHair,
+                                  @RequestParam("charactereye") String cEye){
+
+
             //add collected info into model
             Characters c = new Characters();
+
             c.setCClass(cClass);
             c.setCCharacterName(cName);
             c.setCAlignment(cAlignment);
@@ -151,19 +155,42 @@ public class CharactersController {
 
             mCharacter.addAttribute("characters", c);
 
+            if (Objects.equals(c.getCRace(), "Half Elf")){
+
+                return "createcharacterhalfelf";
+            }
+
             return "createcharacter2";
-        }
+    }
 
+    @PostMapping("/createcharacterhalfelf")
+    public String createCharacterRacialSp(@ModelAttribute("characters") @Valid Characters c, Model mCharacter, @RequestParam("racial") String cRacial, @RequestParam("cId") Long cId) {
 
+        c.setCHalfElfRacial(cRacial);
+
+        characterService.saveCharacter(c);
+
+        mCharacter.addAttribute("characters", c);
+
+        return "createcharacter2";
+
+    }
+
+    @PostMapping("/createcharacter2alt")
+    public String createCharacter2Alt(@ModelAttribute("characters") @Valid Characters c, Model mCharacter) {
+
+        mCharacter.addAttribute("characters", c);
+
+        return "createcharacter2";
 
     }
 
     @PostMapping("/createcharacter3")
-    public String createCharacter2(@ModelAttribute("characters") @Valid Characters characters, Model mCharacter, @RequestParam("str") String cStr, @RequestParam("dex") int cDex,
+    public String createCharacter2(@ModelAttribute("characters") @Valid Characters c, Model mCharacter, @RequestParam("str") String cStr, @RequestParam("dex") int cDex,
                                    @RequestParam("con") int cCon, @RequestParam("int") int cInt, @RequestParam("wis") int cWis, @RequestParam("cha") int cCha, @RequestParam("cId") Long cId){
 
         //find character by id
-        Characters c = characterService.findById(cId);
+//        Characters c = characterService.findById(cId);
 
         //convert params to int
         int str = Integer.parseInt(cStr);
@@ -175,6 +202,9 @@ public class CharactersController {
         c.setCInt(cInt);
         c.setCWis(cWis);
         c.setCCha(cCha);
+
+        characterSkillsService.addBaseSkillPoints(cId);
+        characterSkillsService.addTotalSkillPoints(cId);
 
         //save to model
         characterService.addCharacterStep2(c);
