@@ -33,11 +33,8 @@ public class CharacterSkills implements Serializable {
     Long csId;
 
     @ToString.Exclude
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "cId")
-    Characters csCharacters;
-
-    int csSkillPoints;
+    @OneToOne(mappedBy = "csId", fetch = FetchType.LAZY)
+    Characters cId;
 
     int csAcrobaticsAbilityMod;
     int csAcrobaticsRanks;
