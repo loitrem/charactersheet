@@ -57,7 +57,7 @@ public class CharactersController {
         Characters c = characterService.findById(id);
         List<CharacterLanguages> cl = c.getCLanguages();
         List<CharacterSpells> csp = c.getCSpells();
-        CharacterSkills csk = c.getCSkills();
+        CharacterSkills csk = c.getCsId();
         Players p = c.getCPlayer();
         Games g = c.getCGames();
 
@@ -77,7 +77,7 @@ public class CharactersController {
         Characters c = characterService.findById(id);
         List<CharacterLanguages> cl = c.getCLanguages();
         List<CharacterSpells> csp = c.getCSpells();
-        CharacterSkills csk = c.getCSkills();
+        CharacterSkills csk = c.getCsId();
         Players p = c.getCPlayer();
         Games g = c.getCGames();
 
@@ -128,7 +128,7 @@ public class CharactersController {
     @PostMapping("/createcharacter2")
     public String createCharacter(@ModelAttribute("characters") @Valid Characters characters, Model mCharacter,@RequestParam("characterclass") String cClass,
                                   @RequestParam("charactername") String cName, @RequestParam("characteralignment") String cAlignment, @RequestParam("characterlevel") int cLevel,
-                                  @RequestParam("characterdeity") String cDeity, @RequestParam("characterrace") String cRace, @RequestParam("characterage") int cAge,
+                                  @RequestParam("characterdeity") String cDeity, @RequestParam("characterrace") String cRace, @RequestParam("charactergender") String cGender, @RequestParam("characterage") int cAge,
                                   @RequestParam("characterheight") int cHeight, @RequestParam("characterweight") int cWeight, @RequestParam("characterhair") String cHair,
                                   @RequestParam("charactereye") String cEye){
 
@@ -142,6 +142,7 @@ public class CharactersController {
             c.setCLevel(cLevel);
             c.setCDeity(cDeity);
             c.setCRace(cRace);
+            c.setCGender(cGender);
             c.setCAge(cAge);
             c.setCHeight(cHeight);
             c.setCWeight(cWeight);
@@ -164,7 +165,9 @@ public class CharactersController {
     }
 
     @PostMapping("/createcharacterhalfelf")
-    public String createCharacterRacialSp(@ModelAttribute("characters") @Valid Characters c, Model mCharacter, @RequestParam("racial") String cRacial, @RequestParam("cId") Long cId) {
+    public String createCharacterRacialSp(@ModelAttribute("characters") @Valid Characters characters, Model mCharacter, @RequestParam("racial") String cRacial, @RequestParam("cId") Long cId) {
+
+        Characters c = characterService.findById(cId);
 
         c.setCHalfElfRacial(cRacial);
 
@@ -176,44 +179,33 @@ public class CharactersController {
 
     }
 
-    @PostMapping("/createcharacter2alt")
-    public String createCharacter2Alt(@ModelAttribute("characters") @Valid Characters c, Model mCharacter) {
-
-        mCharacter.addAttribute("characters", c);
-
-        return "createcharacter2";
-
-    }
-
     @PostMapping("/createcharacter3")
-    public String createCharacter2(@ModelAttribute("characters") @Valid Characters c, Model mCharacter, @RequestParam("str") String cStr, @RequestParam("dex") int cDex,
+    public String createCharacter2(@ModelAttribute("characters") @Valid Characters characters, Model mCharacter, @RequestParam("str") int cStr, @RequestParam("dex") int cDex,
                                    @RequestParam("con") int cCon, @RequestParam("int") int cInt, @RequestParam("wis") int cWis, @RequestParam("cha") int cCha, @RequestParam("cId") Long cId){
 
         //find character by id
-//        Characters c = characterService.findById(cId);
+        Characters c = characterService.findById(cId);
 
-        //convert params to int
-        int str = Integer.parseInt(cStr);
-        
         //add collected info into character
-        c.setCStr(str);
+        c.setCStr(cStr);
         c.setCDex(cDex);
         c.setCCon(cCon);
         c.setCInt(cInt);
         c.setCWis(cWis);
         c.setCCha(cCha);
 
-        characterSkillsService.addBaseSkillPoints(cId);
-        characterSkillsService.addTotalSkillPoints(cId);
-
         //save to model
-        characterService.addCharacterStep2(c);
+        characterService.saveCharacter(c);
 
         //pull current info of character
         Characters character = characterService.findById(cId);
 
         //add class skills for character skills
         characterSkillsService.addClassSkills(c.getCId());
+
+        //add base and total skill points
+        characterSkillsService.addBaseSkillPoints(cId);
+        characterSkillsService.addTotalSkillPoints(cId);
 
         //add character to model
         mCharacter.addAttribute("characters", character);

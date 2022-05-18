@@ -78,8 +78,9 @@ public class Characters implements Serializable {
     List<CharacterWeapons> cWeapon;
 
     @ToString.Exclude
-    @OneToOne(mappedBy = "csCharacters", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    CharacterSkills cSkills;
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "csId")
+    CharacterSkills csId;
 
     int cSpellsKnows0;
     int cSpellsKnows1;

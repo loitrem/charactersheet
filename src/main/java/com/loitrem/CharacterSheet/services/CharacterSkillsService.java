@@ -38,9 +38,7 @@ public class CharacterSkillsService {
         //create new characterSkills
         CharacterSkills cs = new CharacterSkills();
 
-
-        //set found character in skills
-        cs.setCsCharacters(c);
+        c.setCsId(cs);
 
         switch (c.getCClass()){
             case "Barbarian":
@@ -259,7 +257,7 @@ public class CharacterSkillsService {
 
         //pull the objects for characters and skills
         Characters c = characterService.findById(id);
-        CharacterSkills cs = iCharacterSkillsRepo.getById(c.getCSkills().getCsId());
+        CharacterSkills cs = iCharacterSkillsRepo.getById(c.getCsId().getCsId());
 
         int baseSkillPoints = 0;
 
