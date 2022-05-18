@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class CharacterSkillsService {
@@ -254,86 +255,126 @@ public class CharacterSkillsService {
     }
 
     @Transactional
-    public void addTotalSkillPoints(Long id){
+    public void addBaseSkillPoints(Long id) {
 
         //pull the objects for characters and skills
         Characters c = characterService.findById(id);
         CharacterSkills cs = iCharacterSkillsRepo.getById(c.getCSkills().getCsId());
 
         int baseSkillPoints = 0;
-        int racialSkillPoints = 0;
-        int totalSkillPoints = 0;
 
 
         // set base skill points based on class and level
-        switch (c.getCClass()){
+        switch (c.getCClass()) {
             case "Barbarian":
                 baseSkillPoints = c.getCLevel() + (c.getCInt() + 4);
+                c.setCTotalSp(baseSkillPoints);
+                characterService.saveCharacter(c);
 
                 break;
 
             case "Bard":
                 baseSkillPoints = c.getCLevel() + (c.getCInt() + 6);
+                c.setCTotalSp(baseSkillPoints);
+                characterService.saveCharacter(c);
 
                 break;
 
             case "Cleric":
                 baseSkillPoints = c.getCLevel() + (c.getCInt() + 2);
+                c.setCTotalSp(baseSkillPoints);
+                characterService.saveCharacter(c);
 
                 break;
 
             case "Druid":
                 baseSkillPoints = c.getCLevel() + (c.getCInt() + 4);
+                c.setCTotalSp(baseSkillPoints);
+                characterService.saveCharacter(c);
 
                 break;
 
             case "Fighter":
                 baseSkillPoints = c.getCLevel() + (c.getCInt() + 2);
+                c.setCTotalSp(baseSkillPoints);
+                characterService.saveCharacter(c);
 
                 break;
 
             case "Monk":
                 baseSkillPoints = c.getCLevel() + (c.getCInt() + 4);
+                c.setCTotalSp(baseSkillPoints);
+                characterService.saveCharacter(c);
 
                 break;
 
             case "Paladin":
                 baseSkillPoints = c.getCLevel() + (c.getCInt() + 2);
+                c.setCTotalSp(baseSkillPoints);
+                characterService.saveCharacter(c);
 
                 break;
 
             case "Ranger":
                 baseSkillPoints = c.getCLevel() + (c.getCInt() + 6);
+                c.setCTotalSp(baseSkillPoints);
+                characterService.saveCharacter(c);
 
                 break;
 
             case "Rogue":
                 baseSkillPoints = c.getCLevel() + (c.getCInt() + 8);
+                c.setCTotalSp(baseSkillPoints);
+                characterService.saveCharacter(c);
 
                 break;
 
             case "Sorcerer":
                 baseSkillPoints = c.getCLevel() + (c.getCInt() + 2);
+                c.setCTotalSp(baseSkillPoints);
+                characterService.saveCharacter(c);
 
                 break;
 
             case "Wizard":
                 baseSkillPoints = c.getCLevel() + (c.getCInt() + 2);
+                c.setCTotalSp(baseSkillPoints);
+                characterService.saveCharacter(c);
 
                 break;
         }
+    }
+
+    @Transactional
+    public void addTotalSkillPoints(Long id){
+
+        //pull the objects for characters and skills
+        Characters c = characterService.findById(id);
 
         // set racial skill points
         switch (c.getCClass()){
             case "Half Elf":
-                if (c.iscHalfElfRacialSp()){
-                    racialSkillPoints = c.getCLevel();
+                if (Objects.equals(c.getCHalfElfRacial(), "sp")){
+                    c.setCRacialSp(c.getCLevel());
+                    c.setCTotalSp(c.getCLevel() + c.getCRacialSp());
+
+                    characterService.saveCharacter(c);
+
+                    break;
                 }
+
+                c.setCRacialSp(0);
+                c.setCTotalSp(c.getCLevel() + c.getCRacialSp());
+
+                characterService.saveCharacter(c);
 
                 break;
 
             case "Human":
-                racialSkillPoints = c.getCLevel();
+                c.setCRacialSp(c.getCLevel());
+                c.setCTotalSp(c.getCLevel() + c.getCRacialSp());
+
+                characterService.saveCharacter(c);
 
                 break;
 

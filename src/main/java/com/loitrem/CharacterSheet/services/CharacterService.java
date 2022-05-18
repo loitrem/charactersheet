@@ -61,4 +61,9 @@ public class CharacterService {
     public void addCharacterStep2(Characters c){
         iCharactersRepo.save(c);
     }
+
+    @Transactional
+    public void saveCharacter(Characters c){
+        iCharactersRepo.save(c);
+    }
 }
