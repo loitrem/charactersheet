@@ -60,6 +60,12 @@ public class Characters implements Serializable {
     int cInt;
     int cWis;
     int cCha;
+    int cStrMod;
+    int cDexMod;
+    int cConMod;
+    int cIntMod;
+    int cWisMod;
+    int cChaMod;
     int cHp;
     int cSpeed;
     int cInitMiscModifier;

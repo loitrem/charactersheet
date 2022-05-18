@@ -186,6 +186,14 @@ public class CharactersController {
         //find character by id
         Characters c = characterService.findById(cId);
 
+        //set ability modifiers
+        c.setCStrMod(characterService.setAbilityModifier(cStr));
+        c.setCDexMod(characterService.setAbilityModifier(cDex));
+        c.setCConMod(characterService.setAbilityModifier(cCon));
+        c.setCIntMod(characterService.setAbilityModifier(cInt));
+        c.setCWisMod(characterService.setAbilityModifier(cWis));
+        c.setCChaMod(characterService.setAbilityModifier(cCha));
+
         //add collected info into character
         c.setCStr(cStr);
         c.setCDex(cDex);

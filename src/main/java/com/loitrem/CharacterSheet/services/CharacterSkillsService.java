@@ -265,77 +265,77 @@ public class CharacterSkillsService {
         // set base skill points based on class and level
         switch (c.getCClass()) {
             case "Barbarian":
-                baseSkillPoints = c.getCLevel() + (c.getCInt() + 4);
+                baseSkillPoints = c.getCLevel() + (c.getCIntMod() + 4);
                 c.setCTotalSp(baseSkillPoints);
                 characterService.saveCharacter(c);
 
                 break;
 
             case "Bard":
-                baseSkillPoints = c.getCLevel() + (c.getCInt() + 6);
+                baseSkillPoints = c.getCLevel() + (c.getCIntMod() + 6);
                 c.setCTotalSp(baseSkillPoints);
                 characterService.saveCharacter(c);
 
                 break;
 
             case "Cleric":
-                baseSkillPoints = c.getCLevel() + (c.getCInt() + 2);
+                baseSkillPoints = c.getCLevel() + (c.getCIntMod() + 2);
                 c.setCTotalSp(baseSkillPoints);
                 characterService.saveCharacter(c);
 
                 break;
 
             case "Druid":
-                baseSkillPoints = c.getCLevel() + (c.getCInt() + 4);
+                baseSkillPoints = c.getCLevel() + (c.getCIntMod() + 4);
                 c.setCTotalSp(baseSkillPoints);
                 characterService.saveCharacter(c);
 
                 break;
 
             case "Fighter":
-                baseSkillPoints = c.getCLevel() + (c.getCInt() + 2);
+                baseSkillPoints = c.getCLevel() + (c.getCIntMod() + 2);
                 c.setCTotalSp(baseSkillPoints);
                 characterService.saveCharacter(c);
 
                 break;
 
             case "Monk":
-                baseSkillPoints = c.getCLevel() + (c.getCInt() + 4);
+                baseSkillPoints = c.getCLevel() + (c.getCIntMod() + 4);
                 c.setCTotalSp(baseSkillPoints);
                 characterService.saveCharacter(c);
 
                 break;
 
             case "Paladin":
-                baseSkillPoints = c.getCLevel() + (c.getCInt() + 2);
+                baseSkillPoints = c.getCLevel() + (c.getCIntMod() + 2);
                 c.setCTotalSp(baseSkillPoints);
                 characterService.saveCharacter(c);
 
                 break;
 
             case "Ranger":
-                baseSkillPoints = c.getCLevel() + (c.getCInt() + 6);
+                baseSkillPoints = c.getCLevel() + (c.getCIntMod() + 6);
                 c.setCTotalSp(baseSkillPoints);
                 characterService.saveCharacter(c);
 
                 break;
 
             case "Rogue":
-                baseSkillPoints = c.getCLevel() + (c.getCInt() + 8);
+                baseSkillPoints = c.getCLevel() + (c.getCIntMod() + 8);
                 c.setCTotalSp(baseSkillPoints);
                 characterService.saveCharacter(c);
 
                 break;
 
             case "Sorcerer":
-                baseSkillPoints = c.getCLevel() + (c.getCInt() + 2);
+                baseSkillPoints = c.getCLevel() + (c.getCIntMod() + 2);
                 c.setCTotalSp(baseSkillPoints);
                 characterService.saveCharacter(c);
 
                 break;
 
             case "Wizard":
-                baseSkillPoints = c.getCLevel() + (c.getCInt() + 2);
+                baseSkillPoints = c.getCLevel() + (c.getCIntMod() + 2);
                 c.setCTotalSp(baseSkillPoints);
                 characterService.saveCharacter(c);
 
@@ -349,20 +349,23 @@ public class CharacterSkillsService {
         //pull the objects for characters and skills
         Characters c = characterService.findById(id);
 
+        int currentTotal = c.getCTotalSp();
+
         // set racial skill points
-        switch (c.getCClass()){
+        switch (c.getCRace()){
             case "Half Elf":
                 if (Objects.equals(c.getCHalfElfRacial(), "sp")){
                     c.setCRacialSp(c.getCLevel());
-                    c.setCTotalSp(c.getCLevel() + c.getCRacialSp());
+                    c.setCTotalSp(currentTotal + c.getCRacialSp());
 
                     characterService.saveCharacter(c);
 
                     break;
                 }
 
+
                 c.setCRacialSp(0);
-                c.setCTotalSp(c.getCLevel() + c.getCRacialSp());
+                c.setCTotalSp(currentTotal + c.getCRacialSp());
 
                 characterService.saveCharacter(c);
 
@@ -370,7 +373,7 @@ public class CharacterSkillsService {
 
             case "Human":
                 c.setCRacialSp(c.getCLevel());
-                c.setCTotalSp(c.getCLevel() + c.getCRacialSp());
+                c.setCTotalSp(c.getCTotalSp() + c.getCLevel() + c.getCRacialSp());
 
                 characterService.saveCharacter(c);
 
